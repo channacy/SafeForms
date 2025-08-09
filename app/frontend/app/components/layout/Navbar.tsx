@@ -45,7 +45,7 @@ export const Navbar = () => {
             },
           }}
         >
-          Home
+          AI Auto-Fill Answers
         </Button>
         <Button
           sx={{
@@ -57,7 +57,7 @@ export const Navbar = () => {
             },
           }}
         >
-          About
+          Generate Vendor Questionnaire
         </Button>
       </ButtonGroup>
 
