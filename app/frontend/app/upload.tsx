@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Navbar } from "./components/layout/Navbar";
+import { Navbar } from "../app/components/layout/Navbar";
 
-export default function Home() {
+export default function Upload() {
   const [text, setText] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
