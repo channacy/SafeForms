@@ -1,0 +1,32 @@
+{
+  "to": "Vendor J",
+  "date": "2025-03-13",
+  "questions": [
+    "Provide evidence of vulnerability scanning cadence.",
+    "State your policy for encryption at rest and in transit.",
+    "Confirm incident response testing frequency."
+  ],
+  "vendor_responses": [
+    {
+      "q": "Provide evidence of vulnerability scanning cadence.",
+      "answer": "Weekly scans via Tenable.",
+      "quality_estimate": 0.8,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "State your policy for encryption at rest and in transit.",
+      "answer": "AES-256 at rest; TLS 1.3 in transit.",
+      "quality_estimate": 0.85,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "Confirm incident response testing frequency.",
+      "answer": "Tabletop annually.",
+      "quality_estimate": 0.7,
+      "evaluation": "borderline",
+      "flags": []
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "to": "Vendor E",
+  "date": "2025-03-01",
+  "questions": [
+    "What TLS versions are supported?",
+    "Are encryption keys managed in a KMS with rotation?",
+    "Do you have a DPO or privacy contact?"
+  ],
+  "vendor_responses": [
+    {
+      "q": "What TLS versions are supported?",
+      "answer": "TLS 1.2 and 1.3.",
+      "quality_estimate": 0.7,
+      "evaluation": "borderline",
+      "flags": [
+        "legacy_tls_present"
+      ]
+    },
+    {
+      "q": "Are encryption keys managed in a KMS with rotation?",
+      "answer": "Yes, AWS KMS with annual rotation.",
+      "quality_estimate": 0.82,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "Do you have a DPO or privacy contact?",
+      "answer": "privacy@vendor-e.com.",
+      "quality_estimate": 0.8,
+      "evaluation": "pass",
+      "flags": []
+    }
+  ]
+}

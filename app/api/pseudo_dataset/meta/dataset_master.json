@@ -1,0 +1,134 @@
+{
+  "company": "Pseudo",
+  "generated_at": "2025-08-09T21:41:25Z",
+  "policies_index": [
+    {
+      "id": "IS-2025-v2.1",
+      "title": "Information Security Policy",
+      "path": "policies/IS-2025-v2.1.md"
+    },
+    {
+      "id": "DP-2025-v1.3",
+      "title": "Data Privacy Policy",
+      "path": "policies/DP-2025-v1.3.md"
+    },
+    {
+      "id": "BCDR-2025-v1.0",
+      "title": "Business Continuity & Disaster Recovery Plan",
+      "path": "policies/BCDR-2025-v1.0.md"
+    },
+    {
+      "id": "VRM-2025-v1.5",
+      "title": "Vendor Risk Management Policy",
+      "path": "policies/VRM-2025-v1.5.md"
+    }
+  ],
+  "incoming_index": [
+    {
+      "from": "Acme Bank",
+      "date": "2025-01-14",
+      "path": "incoming_questionnaires/iq_01_acme_bank.json"
+    },
+    {
+      "from": "HealthTech Co.",
+      "date": "2024-11-20",
+      "path": "incoming_questionnaires/iq_02_healthtech_co..json"
+    },
+    {
+      "from": "FinServe Ltd.",
+      "date": "2025-03-02",
+      "path": "incoming_questionnaires/iq_03_finserve_ltd..json"
+    },
+    {
+      "from": "RetailX",
+      "date": "2025-02-10",
+      "path": "incoming_questionnaires/iq_04_retailx.json"
+    },
+    {
+      "from": "EduCloud",
+      "date": "2025-01-28",
+      "path": "incoming_questionnaires/iq_05_educloud.json"
+    },
+    {
+      "from": "InsureOne",
+      "date": "2025-02-22",
+      "path": "incoming_questionnaires/iq_06_insureone.json"
+    },
+    {
+      "from": "LogiTrans",
+      "date": "2025-03-15",
+      "path": "incoming_questionnaires/iq_07_logitrans.json"
+    },
+    {
+      "from": "GovProcure",
+      "date": "2025-03-05",
+      "path": "incoming_questionnaires/iq_08_govprocure.json"
+    },
+    {
+      "from": "StartPay",
+      "date": "2025-02-17",
+      "path": "incoming_questionnaires/iq_09_startpay.json"
+    },
+    {
+      "from": "MedDesk",
+      "date": "2024-12-12",
+      "path": "incoming_questionnaires/iq_10_meddesk.json"
+    }
+  ],
+  "outgoing_index": [
+    {
+      "to": "Vendor A",
+      "date": "2025-02-05",
+      "path": "outgoing_questionnaires/oq_01_vendor_a.json"
+    },
+    {
+      "to": "Vendor B",
+      "date": "2025-01-12",
+      "path": "outgoing_questionnaires/oq_02_vendor_b.json"
+    },
+    {
+      "to": "Vendor C",
+      "date": "2025-03-09",
+      "path": "outgoing_questionnaires/oq_03_vendor_c.json"
+    },
+    {
+      "to": "Vendor D",
+      "date": "2025-02-19",
+      "path": "outgoing_questionnaires/oq_04_vendor_d.json"
+    },
+    {
+      "to": "Vendor E",
+      "date": "2025-03-01",
+      "path": "outgoing_questionnaires/oq_05_vendor_e.json"
+    },
+    {
+      "to": "Vendor F",
+      "date": "2025-02-26",
+      "path": "outgoing_questionnaires/oq_06_vendor_f.json"
+    },
+    {
+      "to": "Vendor G",
+      "date": "2025-03-11",
+      "path": "outgoing_questionnaires/oq_07_vendor_g.json"
+    },
+    {
+      "to": "Vendor H",
+      "date": "2025-02-07",
+      "path": "outgoing_questionnaires/oq_08_vendor_h.json"
+    },
+    {
+      "to": "Vendor I",
+      "date": "2025-01-30",
+      "path": "outgoing_questionnaires/oq_09_vendor_i.json"
+    },
+    {
+      "to": "Vendor J",
+      "date": "2025-03-13",
+      "path": "outgoing_questionnaires/oq_10_vendor_j.json"
+    }
+  ],
+  "notes": {
+    "evidence_model": "Each incoming QA includes `evidence` (policy/doc refs), `confidence`, and a `proof_bundle` with a hash over sources + timestamp.",
+    "outgoing_scoring": "Vendor responses include a naive `quality_estimate` and `evaluation` label (pass/borderline/fail) plus `flags` for gaps."
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "from": "GovProcure",
+  "date": "2025-03-05",
+  "questions": [
+    {
+      "q": "Do you comply with CCPA?",
+      "answer": "Yes; see privacy policy.",
+      "confidence": 0.89,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "DP-2025-v1.3",
+          "section": "2.1"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "e4f15c302cc9d0174ba8d209b620473a378aaad3cce705dd26dafd71de9bfbea",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "DP-2025-v1.3",
+            "section": "2.1"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Subprocessor change notifications?",
+      "answer": "At least 30 days notice.",
+      "confidence": 0.9,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "DP-2025-v1.3",
+          "section": "4.3"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "07dad6572830f8bab5fda41289cb577477563dbb498374017f09afb07db6a438",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "DP-2025-v1.3",
+            "section": "4.3"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Employee training cadence?",
+      "answer": "Quarterly awareness training.",
+      "confidence": 0.88,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "IS-2025-v2.1",
+          "section": "5.1"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "e0bd95d640fffe7e074ddf7d52e5872c09b22d30768778ce84e76d26e75bd405",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "IS-2025-v2.1",
+            "section": "5.1"
+          }
+        ]
+      }
+    }
+  ]
+}
