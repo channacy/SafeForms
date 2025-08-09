@@ -1,0 +1,32 @@
+{
+  "to": "Vendor C",
+  "date": "2025-03-09",
+  "questions": [
+    "Do you maintain an asset inventory (hardware/software)?",
+    "Do you have a formal vulnerability management program?",
+    "Provide evidence of annual penetration testing."
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you maintain an asset inventory (hardware/software)?",
+      "answer": "Yes, via CMDB with monthly reconciliation.",
+      "quality_estimate": 0.8,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "Do you have a formal vulnerability management program?",
+      "answer": "Yes, weekly scans and monthly patch cycles.",
+      "quality_estimate": 0.78,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "Provide evidence of annual penetration testing.",
+      "answer": "Redacted pentest report summary available upon request.",
+      "quality_estimate": 0.65,
+      "evaluation": "borderline",
+      "flags": []
+    }
+  ]
+}

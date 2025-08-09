@@ -1,0 +1,38 @@
+{
+  "to": "Vendor F",
+  "date": "2025-02-26",
+  "questions": [
+    "Do you conduct DR failover testing?",
+    "What are your RTO and RPO for critical services?",
+    "Are backups tested via restore drills?"
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you conduct DR failover testing?",
+      "answer": "Planned later this year.",
+      "quality_estimate": 0.3,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    },
+    {
+      "q": "What are your RTO and RPO for critical services?",
+      "answer": "RTO unknown; RPO 24 hours.",
+      "quality_estimate": 0.2,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    },
+    {
+      "q": "Are backups tested via restore drills?",
+      "answer": "We do periodic backups; not sure about restores.",
+      "quality_estimate": 0.25,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    }
+  ]
+}

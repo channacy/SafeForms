@@ -1,0 +1,34 @@
+{
+  "to": "Vendor I",
+  "date": "2025-01-30",
+  "questions": [
+    "Do you segregate production and development environments?",
+    "How is access to production approved and reviewed?",
+    "Do you have SSO integrated across critical systems?"
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you segregate production and development environments?",
+      "answer": "Yes, separate VPCs.",
+      "quality_estimate": 0.75,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "How is access to production approved and reviewed?",
+      "answer": "Jira-based approval; quarterly reviews.",
+      "quality_estimate": 0.78,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "Do you have SSO integrated across critical systems?",
+      "answer": "Partial SSO coverage.",
+      "quality_estimate": 0.6,
+      "evaluation": "borderline",
+      "flags": [
+        "control_gaps"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "to": "Vendor D",
+  "date": "2025-02-19",
+  "questions": [
+    "Do you have SOC2 Type II or ISO 27001?",
+    "Do you enforce least-privilege IAM roles?",
+    "How quickly do you remove access on termination?"
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you have SOC2 Type II or ISO 27001?",
+      "answer": "SOC2 Type I only.",
+      "quality_estimate": 0.45,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    },
+    {
+      "q": "Do you enforce least-privilege IAM roles?",
+      "answer": "Mostly; admins can request exceptions.",
+      "quality_estimate": 0.5,
+      "evaluation": "borderline",
+      "flags": []
+    },
+    {
+      "q": "How quickly do you remove access on termination?",
+      "answer": "Within 24 hours.",
+      "quality_estimate": 0.65,
+      "evaluation": "borderline",
+      "flags": []
+    }
+  ]
+}

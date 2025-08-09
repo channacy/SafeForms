@@ -1,0 +1,75 @@
+{
+  "from": "HealthTech Co.",
+  "date": "2024-11-20",
+  "questions": [
+    {
+      "q": "Is patient data shared with third parties?",
+      "answer": "Only with HIPAA-compliant subprocessors listed in the privacy policy.",
+      "confidence": 0.91,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "DP-2025-v1.3",
+          "section": "4.3"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "07dad6572830f8bab5fda41289cb577477563dbb498374017f09afb07db6a438",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "DP-2025-v1.3",
+            "section": "4.3"
+          }
+        ]
+      }
+    },
+    {
+      "q": "How do you handle data deletion requests?",
+      "answer": "We process deletion requests within 30 days using a secure wipe process.",
+      "confidence": 0.93,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "DP-2025-v1.3",
+          "section": "4.0"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "3b2f719b1dec2d4fed8900ce1f7f274582254ed6ff1edf308a382e4c6adc4a9b",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "DP-2025-v1.3",
+            "section": "4.0"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Do you have a DPO?",
+      "answer": "Yes, privacy@pseudo.com.",
+      "confidence": 0.9,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "DP-2025-v1.3",
+          "section": "6.1"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "6761db8bd99d2d4d8cddb8d5e81ed179dd6a68738ce68ec3b86af2d8ea93b348",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "DP-2025-v1.3",
+            "section": "6.1"
+          }
+        ]
+      }
+    }
+  ]
+}

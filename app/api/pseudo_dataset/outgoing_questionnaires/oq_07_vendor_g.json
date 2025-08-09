@@ -1,0 +1,34 @@
+{
+  "to": "Vendor G",
+  "date": "2025-03-11",
+  "questions": [
+    "Do you maintain a subprocessor list and customer notification policy?",
+    "How do you handle DSARs and within what SLA?",
+    "What data retention policy applies post-termination?"
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you maintain a subprocessor list and customer notification policy?",
+      "answer": "List available; 14-day notice.",
+      "quality_estimate": 0.6,
+      "evaluation": "borderline",
+      "flags": []
+    },
+    {
+      "q": "How do you handle DSARs and within what SLA?",
+      "answer": "Handled within 45 days.",
+      "quality_estimate": 0.7,
+      "evaluation": "borderline",
+      "flags": []
+    },
+    {
+      "q": "What data retention policy applies post-termination?",
+      "answer": "Retention varies by team; not documented.",
+      "quality_estimate": 0.2,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    }
+  ]
+}
