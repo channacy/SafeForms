@@ -2,7 +2,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 import os
 import json
-policy_dir = "c:/Users/konid/Downloads/pseudo_stress_test_dataset/pseudo_dataset/policies"
+policy_dir = "app/api/pseudo_dataset/policies"
 policy_files = [f for f in os.listdir(policy_dir) if f.endswith(".md")]
 client = chromadb.Client()
 collection = client.get_or_create_collection(name="policy_collection")
@@ -14,7 +14,7 @@ for fname in policy_files:
         ids=[fname]
     )
 # 2. Extract all questions from incoming questionnaires
-questionnaire_dir = "c:/Users/konid/Downloads/pseudo_stress_test_dataset/pseudo_dataset/incoming_questionnaires"
+questionnaire_dir = "app/api/pseudo_dataset/incoming_questionnaires"
 question_files = [f for f in os.listdir(questionnaire_dir) if f.endswith(".json")]
 all_questions = []
 for fname in question_files:
