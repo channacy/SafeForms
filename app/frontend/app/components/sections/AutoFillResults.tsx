@@ -1,5 +1,6 @@
 "use client"
 import { QuestionResponse } from "../../components/layout/QuestionResponse"
+import { ProgressMobileStepper } from "../layout/ProgressMobileStepper";
 
 // TODO: 
 export default interface Props {
@@ -21,9 +22,7 @@ export const AutoFillResults = ({setCurrentStep}: Props) => {
                         <QuestionResponse question="How is data protected?" response="No" confidenceScore={10}/>
                     </div>
                     <div className="flex justify-center mt-8">
-                        <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600" onClick={() => setCurrentStep((prevActiveStep) => prevActiveStep + 1)}>
-                            Continue
-                </button>
+                        <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600" onClick={() => setCurrentStep((prevActiveStep) => prevActiveStep + 1)}>Continue</button>
                     </div>
                 </div>
             </div>
