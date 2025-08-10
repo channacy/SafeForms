@@ -6,7 +6,6 @@ import { Navbar } from "./components/layout/Navbar";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       <main className="flex-1 flex items-center justify-center px-4 py-16 bg-gradient-to-b from-emerald-50 to-white">
         <div className="w-full max-w-4xl">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-emerald-900 text-center">Welcome to SafeForms</h1>
