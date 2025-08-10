@@ -5,35 +5,21 @@ import MobileStepper from '@mui/material/MobileStepper';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import { useRouter } from 'next/navigation';
 
 interface ProgressMobileStepperProps {
-  currentStep: number;
+  currentStep: number;  
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const ProgressMobileStepper = ({ currentStep }: ProgressMobileStepperProps) => {
-  const router = useRouter();
+export const ProgressMobileStepper = ({ currentStep, setCurrentStep }: ProgressMobileStepperProps) => {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(currentStep);
-
-  const rerouteToNewPage = () => {
-    if (activeStep == 1) {
-      router.push('/');
-    } else if (activeStep == 2) {
-      router.push('/');
-    }  else {
-      router.push('/');
-    }
-  }
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    rerouteToNewPage();
+    setCurrentStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    rerouteToNewPage();
+    setCurrentStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   return (
@@ -41,10 +27,10 @@ export const ProgressMobileStepper = ({ currentStep }: ProgressMobileStepperProp
       variant="progress"
       steps={3}
       position="static"
-      activeStep={activeStep}
+      activeStep={currentStep}
       sx={{ maxWidth: 2000, flexGrow: 1, background: "transparent", width: "100%" }}
       nextButton={
-        <Button size="small" onClick={handleNext} disabled={activeStep === 3}>
+        <Button size="small" onClick={handleNext} disabled={currentStep === 2}>
           Next
           {theme.direction === 'rtl' ? (
             <KeyboardArrowLeft />
@@ -54,7 +40,7 @@ export const ProgressMobileStepper = ({ currentStep }: ProgressMobileStepperProp
         </Button>
       }
       backButton={
-        <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+        <Button size="small" onClick={handleBack} disabled={currentStep === 0}>
           {theme.direction === 'rtl' ? (
             <KeyboardArrowRight />
           ) : (

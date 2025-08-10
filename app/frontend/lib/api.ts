@@ -48,4 +48,3 @@ export async function askWithHistory(question: string, history: Array<{ question
     sources?: string[];
   }>;
 }
-

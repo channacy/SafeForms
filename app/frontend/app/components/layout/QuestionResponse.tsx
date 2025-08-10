@@ -9,7 +9,6 @@ interface Props {
 }
 
 export const QuestionResponse = ({ question, response, confidenceScore }: Props) => {
-
   const getBgColor = (score: number) => {
     if (score >= 0 && score < 20) return `error.main`;
     if (score >= 20 && score < 40) return `warning.main`;
