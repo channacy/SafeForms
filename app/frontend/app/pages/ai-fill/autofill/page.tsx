@@ -1,6 +1,10 @@
-import { QuestionResponse } from "../../../components/layout/QuestionResponse"
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { QuestionResponse } from "../../../components/layout/QuestionResponse";
 
 export default function Page() {
+    const router = useRouter();
     return (
         <div className="min-h-screen flex flex-col">
             <div className="flex-1 flex items-start justify-center px-4 pt-8 pb-8">
@@ -16,7 +20,10 @@ export default function Page() {
                     </div>
                     
                     <div className="flex justify-center mt-8">
-                        <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">
+                        <button 
+                            onClick={() => router.push('/pages/ai-fill/confirm')}
+                            className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600"
+                        >
                             Continue
                         </button>
                     </div>
