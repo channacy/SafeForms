@@ -1,4 +1,4 @@
-Boogle Inc. Internal Policies
+# Boogle Inc. Internal Policies
 Information Security Policy
 1.0 Purpose, Scope, and Audience
 1.1 Purpose: The purpose of this Information Security Policy is to establish a framework of controls to protect the confidentiality, integrity, and availability (the "CIA Triad") of Boogle Inc.'s information assets. This policy is designed to mitigate security risks, prevent security incidents, comply with legal and regulatory requirements, and protect the company's reputation.

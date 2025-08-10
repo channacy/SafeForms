@@ -1,4 +1,4 @@
-Boogle Inc. Encryption Standards Policy
+# Boogle Inc. Encryption Standards Policy
 Policy Number: IT-SEC-002 Effective Date: August 11, 2025 Last Reviewed: August 11, 2025 Policy Owner: Chief Technology Officer (CTO)
 1.0 Purpose and Overview
 This document defines the minimum standards for the use of encryption to protect the confidentiality and integrity of Boogle Inc.'s corporate and customer data. This policy ensures that sensitive information is rendered unreadable and unusable to unauthorized individuals, both when it is stored (data-at-rest) and when it is being transmitted across networks (data-in-transit). This policy is a supplement to the Access Control Policy (IT-SEC-001).

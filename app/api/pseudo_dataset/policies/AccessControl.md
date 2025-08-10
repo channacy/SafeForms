@@ -1,4 +1,4 @@
-Boogle Inc. Access Control Policy
+# Boogle Inc. Access Control Policy
 Policy Number: IT-SEC-001 Effective Date: August 11, 2025 Last Reviewed: August 11, 2025 Policy Owner: Chief Technology Officer (CTO)
 1.0 Purpose and Overview
 This document outlines the Access Control Policy for Boogle Inc. The purpose of this policy is to establish the rules and requirements for granting, managing, and revoking access to Boogle Inc.'s information systems, data, and physical facilities. The primary goal is to protect the confidentiality, integrity, and availability of our corporate and customer data by ensuring that access is granted on a "need-to-know" basis and based on the principle of least privilege. This policy is a critical component of our commitment to data security and operational integrity.

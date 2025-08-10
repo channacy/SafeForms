@@ -1,4 +1,4 @@
-Boogle Inc. - Acceptable Use Policy
+# Boogle Inc. - Acceptable Use Policy
 1.0 Purpose and Scope
 1.1 Purpose: This Acceptable Use Policy (AUP) defines the rules and guidelines for all users of Boogle Inc.'s information technology (IT) resources. The purpose is to protect our personnel, partners, customers, and the company from illegal, unethical, or damaging actions by individuals using our systems.
 1.2 Scope: This policy applies to all Boogle Inc. personnel (employees, contractors, vendors), and any other individuals granted access to our IT resources. This includes all company-issued hardware (laptops, mobile devices), software, network infrastructure, cloud services, and data.

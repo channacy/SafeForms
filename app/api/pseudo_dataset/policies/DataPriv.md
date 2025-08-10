@@ -1,4 +1,4 @@
-Boogle Inc. Data Privacy Policy
+# Boogle Inc. Data Privacy Policy
 1.0 Introduction and Scope
 1.1 Commitment: Boogle Inc. ("we," "us," "our") is committed to protecting the privacy and security of personal data. This Data Privacy Policy explains our practices regarding the collection, use, processing, and disclosure of personal data.
 1.2 Scope: This policy applies to the personal data of our customers, the end-users of our customers who interact with our services, visitors to our website (https://www.google.com/search?q=boogleinc.com), and our employees.
