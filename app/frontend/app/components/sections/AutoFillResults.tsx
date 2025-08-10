@@ -24,7 +24,7 @@ export const AutoFillResults = ({ results }: { results: Result[] }) => {
              <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-orange-100 text-orange-800 border-orange-300">SUGGEST · 0.72</span>
             <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-red-100 text-red-800 border-red-300">FLAG · 0.30</span>
              <span className="ml-2 text-gray-500">(badge shows action and confidence)</span>
-          </div> 
+          </div>
           <div className="space-y-6">
             {results.map((r, idx) => (
               <QuestionResponse

@@ -66,6 +66,7 @@ export const ConfirmationResult = ({ results, emails, setEmails, apiStatus, send
               value={emails.email1}
               onChange={(e) => setEmails({ ...emails, email1: e.target.value })}
               className="w-full p-3 border rounded-lg"
+              placeholder='example@domain.com'
             />
           </div>
 
