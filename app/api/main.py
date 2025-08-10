@@ -44,6 +44,7 @@ route_specs = [
     ("app.api.routes.proofs", "/api/proofs", "proofs"),
     ("app.api.routes.email", "/api/email", "email"),
     ("app.api.routes.runs", "/api/runs", "runs"),
+    ("app.api.routes.approvals", "/api/approvals", "approvals"),
 ]
 
 for mod_path, prefix, tag in route_specs:

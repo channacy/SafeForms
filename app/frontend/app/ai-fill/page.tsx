@@ -1,11 +1,10 @@
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Navbar } from "./components/layout/Navbar";
-import { health, askWithHistory, sendProgress, sendCompletion, upsertSuggestions } from "../lib/api";
+import { Navbar } from "../components/layout/Navbar";
+import { health, askWithHistory, sendProgress, sendCompletion, upsertSuggestions } from "../../lib/api";
 
-export default function Home() {
+export default function AIFillPage() {
   const [text, setText] = useState('');
   const [apiStatus, setApiStatus] = useState('');
   const [checking, setChecking] = useState(false);
@@ -32,7 +31,6 @@ export default function Home() {
   }[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-resize textarea based on content
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
@@ -43,8 +41,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
-      {/* Main content area */}
+
       <div className="flex-1 flex items-start justify-center px-4 pt-20 pb-8">
         <div className="w-full max-w-4xl">
           {/* Recipients */}
@@ -59,6 +56,17 @@ export default function Home() {
                 className="w-full px-3 py-2 border rounded-md text-sm"
               />
             </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">Recipient 2</label>
+              <input
+                type="email"
+                value={email2}
+                onChange={(e) => setEmail2(e.target.value)}
+                placeholder="bob@example.com"
+                className="w-full px-3 py-2 border rounded-md text-sm"
+              />
+            </div>
+          </div>
 
           {/* Session & Email controls */}
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -91,6 +99,7 @@ export default function Home() {
               />
             </div>
           </div>
+
           <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="block text-xs font-semibold text-gray-700 mb-1">Progress Message</label>
@@ -109,17 +118,7 @@ export default function Home() {
               />
             </div>
           </div>
-            <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Recipient 2</label>
-              <input
-                type="email"
-                value={email2}
-                onChange={(e) => setEmail2(e.target.value)}
-                placeholder="bob@example.com"
-                className="w-full px-3 py-2 border rounded-md text-sm"
-              />
-            </div>
-          </div>
+
           <textarea
             ref={textareaRef}
             value={text}
@@ -134,8 +133,7 @@ export default function Home() {
               lineHeight: '1.6',
             }}
           />
-          
-          {/* Character count indicator */}
+
           <div className="mt-2 text-right text-sm text-gray-500">
             {text.length} characters
           </div>
@@ -163,7 +161,6 @@ export default function Home() {
               <span className="text-sm text-gray-700">{apiStatus}</span>
             )}
 
-            {/* Ask RAG (aligned to the right) */}
             <span className="ml-auto" />
             <button
               className="px-3 py-2 rounded-md border border-gray-300 hover:border-gray-400 bg-white shadow-sm text-sm disabled:opacity-50 disabled:cursor-not-allowed"
@@ -209,7 +206,7 @@ export default function Home() {
                     } catch (e: any) {
                       const row = { question: q, best_policy: 'error', confidence: 0, engine: e?.message ?? 'error' } as any;
                       setResults(prev => [...prev, row]);
-                      setApiStatus(`Ask error for "${q}": ${e?.message ?? 'unknown'}`);
+                      setApiStatus(`Ask error for \"${q}\": ${e?.message ?? 'unknown'}`);
                     }
                     await new Promise(r => setTimeout(r, 50));
                   }
@@ -272,19 +269,20 @@ export default function Home() {
                 const badgeColor = r.action === 'answer' ? 'bg-green-100 text-green-800 border-green-300' : r.action === 'suggest' ? 'bg-orange-100 text-orange-800 border-orange-300' : 'bg-red-100 text-red-800 border-red-300';
                 const badgeLabel = r.action ? r.action.toUpperCase() : 'RESULT';
                 return (
-                <div key={idx} className="p-4 border rounded bg-gray-50 text-sm text-gray-800">
-                  <div className="font-semibold">{idx + 1}. Q: {r.question}</div>
-                  {r.answer && (
-                    <div className="mt-1 whitespace-pre-wrap"><span className="font-semibold">{r.action === 'suggest' ? 'Suggestion' : 'Answer'}:</span> {r.answer}</div>
-                  )}
-                  <div className={`inline-block mt-2 px-2 py-0.5 border rounded text-xs font-semibold ${badgeColor}`}>{badgeLabel}{typeof r.model_confidence === 'number' ? ` · ${r.model_confidence.toFixed(2)}` : ''}</div>
-                  <div className="mt-1"><span className="font-semibold">Best Policy:</span> {r.best_policy || 'n/a'}</div>
-                  <div><span className="font-semibold">Engine:</span> {r.engine}{r.llm_engine ? ` · ${r.llm_engine}` : ''}</div>
-                  {r.sources && r.sources.length > 0 && (
-                    <div className="mt-1"><span className="font-semibold">Sources:</span> {r.sources.join('; ')}</div>
-                  )}
-                </div>
-              ); })}
+                  <div key={idx} className="p-4 border rounded bg-gray-50 text-sm text-gray-800">
+                    <div className="font-semibold">{idx + 1}. Q: {r.question}</div>
+                    {r.answer && (
+                      <div className="mt-1 whitespace-pre-wrap"><span className="font-semibold">{r.action === 'suggest' ? 'Suggestion' : 'Answer'}:</span> {r.answer}</div>
+                    )}
+                    <div className={`inline-block mt-2 px-2 py-0.5 border rounded text-xs font-semibold ${badgeColor}`}>{badgeLabel}{typeof r.model_confidence === 'number' ? ` · ${r.model_confidence.toFixed(2)}` : ''}</div>
+                    <div className="mt-1"><span className="font-semibold">Best Policy:</span> {r.best_policy || 'n/a'}</div>
+                    <div><span className="font-semibold">Engine:</span> {r.engine}{r.llm_engine ? ` · ${r.llm_engine}` : ''}</div>
+                    {r.sources && r.sources.length > 0 && (
+                      <div className="mt-1"><span className="font-semibold">Sources:</span> {r.sources.join('; ')}</div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
