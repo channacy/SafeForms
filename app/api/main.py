@@ -57,6 +57,8 @@ route_specs = [
     ("app.api.routes.email", "/api/email", "email"),
     ("app.api.routes.runs", "/api/runs", "runs"),
     ("app.api.routes.approvals", "/api/approvals", "approvals"),
+    ("app.api.routes_stream", "", "stream"),
+    ("app.api.routes_runs", "", "runs_batch"),
 ]
 
 for mod_path, prefix, tag in route_specs:
@@ -68,3 +70,10 @@ for mod_path, prefix, tag in route_specs:
         # Router not present or module import failed; keep server bootable
         continue
 
+
+# Initialize database (bootstrap; prefer Alembic in production)
+try:
+    from .db import init_db  # type: ignore
+    init_db()
+except Exception:
+    pass
