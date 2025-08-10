@@ -57,7 +57,7 @@ export default function AIFillPage() {
           {/* Recipients */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Recipient 1</label>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">Recipient 1 (optional)</label>
               <input
                 type="email"
                 value={email1}
@@ -67,7 +67,7 @@ export default function AIFillPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Recipient 2</label>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">Recipient 2 (optional)</label>
               <input
                 type="email"
                 value={email2}
@@ -159,11 +159,6 @@ export default function AIFillPage() {
               onClick={async () => {
                 const lines = text.split('\n').map(s => s.trim()).filter(Boolean);
                 if (lines.length === 0) return;
-                const isValid = (e: string) => /.+@.+\..+/.test(e);
-                if (!isValid(email1) || !isValid(email2)) {
-                  setApiStatus('Please enter two valid recipient emails before asking.');
-                  return;
-                }
                 setAsking(true);
                 setAnswer(null);
                 setResults([]);
@@ -187,23 +182,13 @@ export default function AIFillPage() {
                   setAsking(false);
                 }
               }}
-              disabled={
-                asking ||
-                text.trim().length === 0 ||
-                !/.+@.+\..+/.test(email1) ||
-                !/.+@.+\..+/.test(email2)
-              }
+              disabled={asking || text.trim().length === 0}
             >
               {asking ? 'Asking…' : 'Ask Agent'}
             </button>
             <button
               className="px-3 py-2 rounded-md border border-gray-300 hover:border-gray-400 bg-white shadow-sm text-sm disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={async () => {
-                const isValid = (e: string) => /.+@.+\..+/.test(e);
-                if (!isValid(email1) || !isValid(email2)) {
-                  setApiStatus('Please enter two valid recipient emails before sending completion.');
-                  return;
-                }
                 try {
                   const suggestions = results
                     .map((r, idx) => ({ idx, r }))
@@ -214,13 +199,18 @@ export default function AIFillPage() {
                   if (suggestions.length > 0) {
                     await upsertSuggestions(sid, suggestions);
                   }
-                  const to = [email1.trim(), email2.trim()];
+                  const isValid = (e: string) => /.+@.+\..+/.test(e);
+                  const to = [email1.trim(), email2.trim()].filter(e => isValid(e));
                   // compute stats
                   const answered = results.filter(r => r.action === 'answer').length;
                   const suggested = results.filter(r => r.action === 'suggest').length;
                   const flagged = results.filter(r => r.action === 'flag').length;
                   const resp = await sendCompletion(sid, completionSubject || 'Job Completed', completionPreface || null, to, { answered, suggested, flagged });
-                  setApiStatus(`Completion email sent to: ${resp.to.join(', ')} · accepted suggestions included: ${resp.accepted_count}`);
+                  if (resp.status === 'sent') {
+                    setApiStatus(`Completion email sent to: ${resp.to.join(', ')} · accepted suggestions included: ${resp.accepted_count}`);
+                  } else {
+                    setApiStatus('Completion email skipped (no recipients). Preview available in response.');
+                  }
                 } catch (e: any) {
                   setApiStatus(`Completion email failed: ${e?.message ?? 'unknown'}`);
                 }

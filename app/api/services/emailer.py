@@ -84,19 +84,40 @@ def render_basic_html(title: str, body_html: str, footer_html: Optional[str] = N
     <meta name=\"color-scheme\" content=\"light dark\">
     <meta name=\"supported-color-schemes\" content=\"light dark\">
     <style>
-      body {{ margin:0; padding:0; background:#f7f7f7; }}
-      .container {{ max-width:640px; margin:0 auto; background:#ffffff; padding:24px; font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#1f2937; }}
-      .h1 {{ font-size:18px; font-weight:700; margin:0 0 12px; }}
-      .muted {{ color:#6b7280; font-size:12px; }}
-      .list li {{ margin:4px 0; }}
-      a {{ color:#2563eb; text-decoration:none; }}
+      /* Layout */
+      body {{ margin:0; padding:0; background:#f0fdf4; }} /* green-50 */
+      .wrapper {{ padding:24px 12px; }}
+      .container {{ max-width:720px; margin:0 auto; background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 10px 20px rgba(16,185,129,0.08); font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#111827; }}
+      .header {{ padding:20px 24px 12px; border-bottom:1px solid #f3f4f6; }}
+      .title {{ font-size:20px; line-height:1.2; font-weight:800; margin:0; color:#065f46; }} /* green-900 */
+      .badge-row {{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; }}
+      .content {{ padding:20px 24px; font-size:15px; line-height:1.6; }}
+      .footer {{ padding:12px 24px 20px; border-top:1px solid #f3f4f6; color:#6b7280; font-size:12px; }}
+
+      /* Badges */
+      .badge {{ display:inline-block; padding:4px 10px; border-radius:999px; font-weight:700; border:1px solid transparent; }}
+      .badge-success {{ background:#dcfce7; color:#166534; border-color:#86efac; }} /* green */
+      .badge-warn {{ background:#ffedd5; color:#7c2d12; border-color:#fdba74; }} /* amber */
+      .badge-danger {{ background:#fee2e2; color:#991b1b; border-color:#fca5a5; }} /* red */
+
+      /* Buttons */
+      .btn {{ display:inline-block; padding:10px 14px; border-radius:10px; background:#10b981; color:#ffffff !important; text-decoration:none; font-weight:700; border:1px solid #0ea5a7; box-shadow:0 1px 2px rgba(0,0,0,0.05); }}
+      .btn:hover {{ background:#059669; }}
+      .btn:active {{ background:#047857; }}
+
+      /* Links */
+      a.link {{ color:#047857; text-decoration:underline; }}
     </style>
   </head>
   <body>
-    <div class=\"container\">
-      <div class=\"h1\">{title}</div>
-      <div>{body_html}</div>
-      {f'<div class=\"muted\" style=\"margin-top:16px\">{footer_html}</div>' if footer_html else ''}
+    <div class=\"wrapper\">
+      <div class=\"container\">
+        <div class=\"header\">
+          <h1 class=\"title\">{title}</h1>
+        </div>
+        <div class=\"content\">{body_html}</div>
+        {f'<div class=\"footer\">{footer_html}</div>' if footer_html else ''}
+      </div>
     </div>
   </body>
 </html>"""

@@ -46,7 +46,6 @@ class CompletionEmailRequest(BaseModel):
     subject: str = Field("Job Completed", min_length=1, max_length=200)
     preface: Optional[str] = Field(None, max_length=4000)
     to: Optional[List[str]] = None  # overrides defaults when provided
-    # Optional stats to show in the email summary
     stats: Optional[dict] = None  # {"answered": int, "suggested": int, "flagged": int}
 
 
@@ -112,14 +111,13 @@ def list_suggestions(session_id: str, approvers: Optional[str] = None):
 def send_completion_email(payload: CompletionEmailRequest):
     emailer = Emailer()
     recipients = payload.to or emailer.get_default_completion_recipients()
-    if not recipients:
-        raise HTTPException(status_code=400, detail="No completion recipients configured or provided")
+    sending = len(recipients) > 0
 
     # Determine required approvers; default to completion recipients
-    required_approvers = recipients
-    # Gather accepted suggestions: accepted iff ALL required approvers accepted and none rejected
+    required_approvers = recipients if sending else []
+    # Gather accepted suggestions (only meaningful if we have approvers)
     sugs = approvals_store.list_suggestions(payload.session_id)
-    accepted = [s for s in sugs if s.status(required_approvers) == "accepted"]
+    accepted = [s for s in sugs if s.status(required_approvers) == "accepted"] if sending else []
 
     # Plaintext body (fallback)
     lines: List[str] = []
@@ -142,28 +140,28 @@ def send_completion_email(payload: CompletionEmailRequest):
 
     body = "\n".join(lines)
 
-    # HTML rendering
-    # Build summary badges
+    # Build summary badges (using email template classes)
     stats_html = ""
     if payload.stats:
         a = int(payload.stats.get("answered", 0))
         s = int(payload.stats.get("suggested", 0))
         f = int(payload.stats.get("flagged", 0))
         stats_html = (
-            "<div style=\"margin:8px 0; display:flex; gap:8px; flex-wrap:wrap;\">"
-            f"<span style=\"display:inline-block;padding:4px 8px;border-radius:6px;border:1px solid #86efac;background:#dcfce7;color:#166534;font-weight:600;\">ANSWERED · {a}</span>"
-            f"<span style=\"display:inline-block;padding:4px 8px;border-radius:6px;border:1px solid #fdba74;background:#ffedd5;color:#7c2d12;font-weight:600;\">SUGGESTED · {s}</span>"
-            f"<span style=\"display:inline-block;padding:4px 8px;border-radius:6px;border:1px solid #fca5a5;background:#fee2e2;color:#991b1b;font-weight:600;\">FLAGGED · {f}</span>"
+            "<div class=\"badge-row\">"
+            f"<span class=\"badge badge-success\">ANSWERED · {a}</span>"
+            f"<span class=\"badge badge-warn\">SUGGESTED · {s}</span>"
+            f"<span class=\"badge badge-danger\">FLAGGED · {f}</span>"
             "</div>"
         )
 
     # Review portal link for each recipient
     frontend = os.getenv("FRONTEND_BASE_URL", "http://localhost:3000")
     review_links = []
-    for r in recipients:
-        token = create_token(payload.session_id, r)
-        url = f"{frontend}/pages/approvals?token={token}"
-        review_links.append((r, url))
+    if sending:
+        for r in recipients:
+            token = create_token(payload.session_id, r)
+            url = f"{frontend}/pages/approvals?token={token}"
+            review_links.append((r, url))
 
     # Accepted list (if any)
     if accepted:
@@ -178,10 +176,10 @@ def send_completion_email(payload: CompletionEmailRequest):
         + f"<p><strong>Session:</strong> {payload.session_id}</p>"
         + stats_html
         + "<p><strong>Review Suggestions:</strong></p>"
-        + "".join([
-            f"<p style=\"margin:8px 0;\"><a href=\"{link}\" style=\"display:inline-block;padding:8px 12px;border-radius:6px;background:#2563eb;color:#fff;text-decoration:none;font-weight:600;\">Review as {r}</a></p>"
+        + ("".join([
+            f"<p style=\"margin:8px 0;\"><a href=\"{link}\" class=\"btn\">Review as {r}</a></p>"
             for (r, link) in review_links
-        ])
+        ]) if sending else "<p class=\"text-sm\" style=\"color:#065f46\">No reviewers configured. You can still proceed without email.</p>")
         + accepted_html
     )
     html = render_basic_html(title=payload.subject, body_html=body_html)
@@ -195,6 +193,20 @@ def send_completion_email(payload: CompletionEmailRequest):
     if list_unsub_post:
         headers["List-Unsubscribe-Post"] = list_unsub_post
 
-    emailer.send(subject=payload.subject, body_text=body, to=recipients, body_html=html, headers=headers)
-    return {"status": "sent", "to": recipients, "accepted_count": len(accepted)}
+    if sending:
+        emailer.send(subject=payload.subject, body_text=body, to=recipients, body_html=html, headers=headers)
+        return {"status": "sent", "to": recipients, "accepted_count": len(accepted)}
+    else:
+        # Skip SMTP send; return a preview so the caller can surface it in UI or logs
+        return {
+            "status": "skipped",
+            "reason": "no recipients provided",
+            "to": [],
+            "accepted_count": 0,
+            "preview": {
+                "subject": payload.subject,
+                "body_text": body,
+                "body_html": html,
+            },
+        }
 
