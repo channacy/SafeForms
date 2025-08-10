@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Query
-from typing import List, Dict
+from typing import List, Dict, Optional
+from pydantic import BaseModel
 
 try:
     # package import
@@ -28,4 +29,20 @@ def ask(q: str = Query(..., min_length=1, max_length=4000)) -> Dict[str, object]
     the best matching policy and a confidence.
     """
     return rag.query(q)
+
+
+class QAHistoryItem(BaseModel):
+    question: str
+    answer: Optional[str] = None
+    action: Optional[str] = None
+
+
+class AskRequest(BaseModel):
+    question: str
+    history: Optional[List[QAHistoryItem]] = None
+
+
+@router.post("/ask", summary="Query RAG with free-text question and optional history")
+def ask_with_history(payload: AskRequest) -> Dict[str, object]:
+    return rag.query(payload.question, history=[h.model_dump() for h in (payload.history or [])])
 

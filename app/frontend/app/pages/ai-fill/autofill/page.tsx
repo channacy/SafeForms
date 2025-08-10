@@ -1,12 +1,15 @@
-'use client';
-
+"use client"
 import { useRouter } from 'next/navigation';
-import { QuestionResponse } from "../../../components/layout/QuestionResponse";
+import { Navbar } from "../../../components/layout/Navbar"
+import { QuestionResponse } from "../../../components/layout/QuestionResponse"
+import { ProgressMobileStepper } from "../../../components/layout/ProgressBar"
 
 export default function Page() {
     const router = useRouter();
     return (
         <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <ProgressMobileStepper currentStep={1} />
             <div className="flex-1 flex items-start justify-center px-4 pt-8 pb-8">
                 <div className="w-full max-w-4xl">
                     <h1 className="text-2xl font-bold text-center mb-8">AI Autofilled Responses With Unsure/Low Confident Scores</h1>

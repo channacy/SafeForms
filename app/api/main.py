@@ -1,6 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import importlib
+from typing import Optional
+
+# Load .env early so services can access API keys
+try:
+    from dotenv import load_dotenv  # type: ignore
+    load_dotenv()
+except Exception:
+    # dotenv is optional; continue if unavailable
+    pass
 
 try:
     # Local import when running as a package
