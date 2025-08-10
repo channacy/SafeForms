@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import importlib
 from typing import Optional
+import os
 
 # Load .env early so services can access API keys
 try:
@@ -11,12 +12,23 @@ except Exception:
     # dotenv is optional; continue if unavailable
     pass
 
+class _Settings:
+    def __init__(self) -> None:
+        # Parse ALLOWED_ORIGINS from env (comma-separated), default to localhost:3000
+        env_val = os.getenv("ALLOWED_ORIGINS")
+        if env_val:
+            self.ALLOWED_ORIGINS = [o.strip() for o in env_val.split(",") if o.strip()]
+        else:
+            self.ALLOWED_ORIGINS = ["http://localhost:3000"]
+
+# Try to import settings module if present; otherwise use env-based fallback
 try:
-    # Local import when running as a package
-    from . import settings as app_settings
+    from . import settings as app_settings  # type: ignore
 except Exception:
-    # Fallback for various execution contexts
-    import app.api.settings as app_settings
+    try:
+        import app.api.settings as app_settings  # type: ignore
+    except Exception:
+        app_settings = _Settings()  # type: ignore
 
 
 app = FastAPI(title="SafeForms API", version="0.1.0")
@@ -44,6 +56,7 @@ route_specs = [
     ("app.api.routes.proofs", "/api/proofs", "proofs"),
     ("app.api.routes.email", "/api/email", "email"),
     ("app.api.routes.runs", "/api/runs", "runs"),
+    ("app.api.routes.approvals", "/api/approvals", "approvals"),
 ]
 
 for mod_path, prefix, tag in route_specs:
