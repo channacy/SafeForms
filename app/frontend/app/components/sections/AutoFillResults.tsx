@@ -18,6 +18,13 @@ export const AutoFillResults = ({ results }: { results: Result[] }) => {
           <p className="text-gray-600 text-center mb-8">
             Review the responses below. Low-confidence ones are highlighted.
           </p>
+            <div className="mt-4 text-xs text-gray-700 flex items-center gap-3">
+             <span className="font-semibold">Legend:</span>
+             <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-green-100 text-green-800 border-green-300">ANSWER · 0.95</span>
+             <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-orange-100 text-orange-800 border-orange-300">SUGGEST · 0.72</span>
+            <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-red-100 text-red-800 border-red-300">FLAG · 0.30</span>
+             <span className="ml-2 text-gray-500">(badge shows action and confidence)</span>
+          </div> 
           <div className="space-y-6">
             {results.map((r, idx) => (
               <QuestionResponse
