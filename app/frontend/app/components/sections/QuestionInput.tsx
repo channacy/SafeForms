@@ -4,11 +4,11 @@ import { useState, useRef, useEffect } from 'react';
 
 interface Props {
     userInput: string;
-    currentStep: number;  
     setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+    setNextStep: React.Dispatch<React.SetStateAction<boolean>>;
   }
   
-export const QuestionInput = ({userInput, currentStep, setCurrentStep}: Props) => {
+export const QuestionInput = ({userInput, setCurrentStep, setNextStep}: Props) => {
   const [text, setText] = useState('');
   const [mode, setMode] = useState<'ai-fill' | 'questionnaire'>('ai-fill');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -17,7 +17,6 @@ export const QuestionInput = ({userInput, currentStep, setCurrentStep}: Props) =
   useEffect(() => {
     if (textareaRef.current) {
       const textarea = textareaRef.current;
-      
       // Reset height to calculate new height
       textarea.style.height = 'auto';
       
@@ -43,11 +42,18 @@ export const QuestionInput = ({userInput, currentStep, setCurrentStep}: Props) =
       {/* Main content area */}
       <div className="flex-1 flex items-start justify-center px-4 pt-16 pb-8">
         <div className="w-full max-w-4xl">
-
           <textarea
             ref={textareaRef}
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => {
+                const inputValue = e.target.value;
+                setText(inputValue);
+                if (inputValue.trim()) {
+                  setNextStep(true);
+                } else {
+                  setNextStep(false);
+                }
+              }}
             placeholder={
               mode === 'ai-fill'
                 ? "Paste your questionnaire here..."
@@ -65,22 +71,10 @@ export const QuestionInput = ({userInput, currentStep, setCurrentStep}: Props) =
           
           {/* Character count indicator and submit button */}
           <div className="mt-2 flex justify-between items-center">
-            <div></div>
             <div className="flex flex-col items-end">
               <div className="text-sm text-gray-500 mb-2">
                 {text.length} characters
               </div>
-              <button
-                onClick={handleSubmit}
-                disabled={!text.trim()}
-                className={`px-8 py-3 rounded-lg text-white font-medium transition-all ${
-                  text.trim()
-                    ? 'bg-blue-500 hover:bg-blue-600 shadow-lg hover:shadow-xl'
-                    : 'bg-gray-300 cursor-not-allowed'
-                }`}
-              >
-                {mode === 'ai-fill' ? 'Auto-Fill' : 'Generate'}
-              </button>
             </div>
           </div>
         </div>

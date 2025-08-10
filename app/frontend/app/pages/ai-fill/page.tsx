@@ -10,12 +10,14 @@ import { ConfirmationResult } from '../../components/sections/ConfirmationResult
 export default function Page() {
   const [userInput, setUserInput] = useState('');
   const [activeStep, setActiveStep] = useState(0);
+  const [nextEnabled, setNextEnabled] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <ProgressMobileStepper currentStep={activeStep} setCurrentStep={setActiveStep}/>
+      <ProgressMobileStepper currentStep={activeStep} setCurrentStep={setActiveStep} nextStepEnabled={nextEnabled}/>
       {/* Main content area */}
-      {activeStep == 0 && <QuestionInput userInput={userInput} currentStep={activeStep} setCurrentStep={setActiveStep}/>}
+      {activeStep == 0 && <QuestionInput userInput={userInput} setCurrentStep={setActiveStep} setNextStep={setNextEnabled}/>}
       {activeStep == 1 && <AutoFillResults setCurrentStep={setActiveStep}/>}
       {activeStep == 2 && <ConfirmationResult />}
     </div>

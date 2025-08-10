@@ -9,9 +9,10 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 interface ProgressMobileStepperProps {
   currentStep: number;  
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  nextStepEnabled: boolean;
 }
 
-export const ProgressMobileStepper = ({ currentStep, setCurrentStep }: ProgressMobileStepperProps) => {
+export const ProgressMobileStepper = ({ currentStep, setCurrentStep, nextStepEnabled }: ProgressMobileStepperProps) => {
   const theme = useTheme();
 
   const handleNext = () => {
@@ -30,7 +31,7 @@ export const ProgressMobileStepper = ({ currentStep, setCurrentStep }: ProgressM
       activeStep={currentStep}
       sx={{ maxWidth: 2000, flexGrow: 1, background: "transparent", width: "100%" }}
       nextButton={
-        <Button size="small" onClick={handleNext} disabled={currentStep === 2}>
+        <Button size="small" onClick={handleNext} disabled={currentStep === 2 || !nextStepEnabled}>
           Next
           {theme.direction === 'rtl' ? (
             <KeyboardArrowLeft />

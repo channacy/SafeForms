@@ -21,9 +21,6 @@ export const AutoFillResults = ({setCurrentStep}: Props) => {
                         <QuestionResponse question="What is the software?" response="A code editor with installed" confidenceScore={10}/>
                         <QuestionResponse question="How is data protected?" response="No" confidenceScore={10}/>
                     </div>
-                    <div className="flex justify-center mt-8">
-                        <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600" onClick={() => setCurrentStep((prevActiveStep) => prevActiveStep + 1)}>Continue</button>
-                    </div>
                 </div>
             </div>
         </div>
