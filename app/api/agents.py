@@ -2,11 +2,11 @@ from __future__ import annotations
 from typing import Dict, List
 import time
 
-# Reuse existing RAG service
+# Use strict Plane-A for document QA
 try:
-    from .services import rag
+    from .plane_a_query import query_plane_a
 except Exception:
-    from app.api.services import rag
+    from app.api.plane_a_query import query_plane_a
 
 ANSWER_SCHEMA_KEYS = {"answer", "citations", "answer_confidence", "notes"}
 REVIEW_SCHEMA_KEYS = {"verification_conf", "defects", "fixed_answer"}
@@ -31,31 +31,36 @@ def _citations_from_sources(sources: List[str]) -> List[Dict[str, str]]:
 
 
 def answer_pass_1(question: str) -> Dict:
-    res = rag.query(question)
-    answer = (res.get("answer") or "").strip()
-    conf = float(res.get("model_confidence") or 0.0)
-    sources = res.get("sources") or []
+    res = query_plane_a(question, tau=1.5)
+    answer = res.get("answer", "").strip()
+    conf = float(res.get("confidence_docqa", 0.0))
+    citations = res.get("citations", [])
+    
     payload = {
         "answer": answer,
-        "citations": _citations_from_sources([str(s) for s in sources]),
+        "citations": citations,  # Already in correct format from plane-a
         "answer_confidence": conf,
-        "notes": "first-pass",
+        "notes": f"plane-a:{res.get('action', 'unknown')}",
+        "engine": res.get("engine", "plane-a"),
+        "debug_info": res.get("debug_info", {})
     }
     return payload
 
 
 def answer_pass_2(question: str) -> Dict:
-    # Stronger pass: leverage history with a synthesized prior, or multi-query (placeholder)
-    # For now call rag.query again; TODO: implement multi-query + rerank
-    res = rag.query(question)
-    answer = (res.get("answer") or "").strip()
-    conf = float(res.get("model_confidence") or 0.0)
-    sources = res.get("sources") or []
+    # Second pass: lower tau for more aggressive extraction
+    res = query_plane_a(question, tau=1.0)  # More permissive than pass 1
+    answer = res.get("answer", "").strip()
+    conf = float(res.get("confidence_docqa", 0.0))
+    citations = res.get("citations", [])
+    
     payload = {
         "answer": answer,
-        "citations": _citations_from_sources([str(s) for s in sources]),
+        "citations": citations,
         "answer_confidence": conf,
-        "notes": "second-pass",
+        "notes": f"plane-a-retry:{res.get('action', 'unknown')}",
+        "engine": res.get("engine", "plane-a"),
+        "debug_info": res.get("debug_info", {})
     }
     return payload
 

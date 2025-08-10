@@ -1,4 +1,4 @@
-.PHONY: help api worker frontend install-backend install-frontend db-setup run-batch stream export metrics check-redis
+.PHONY: help api worker frontend install-backend install-frontend db-setup run-batch stream export metrics check-redis plane-a-index plane-a-health plane-a-ask
 
 SHELL := /bin/bash
 PROJECT_ROOT := $(PWD)
@@ -17,6 +17,9 @@ help:
 	@echo "  export            - Export PDF for RUN_ID (usage: make export RUN_ID=<uuid>)"
 	@echo "  metrics           - Curl /metrics"
 	@echo "  check-redis       - Ping Redis"
+	@echo "  plane-a-index     - Build Plane-A index (BGE + chunking)"
+	@echo "  plane-a-health    - Check Plane-A readiness"
+	@echo "  plane-a-ask       - Test Plane-A QA (usage: make plane-a-ask Q='your question')"
 
 install-backend:
 	@if [ ! -d .venv ]; then python3 -m venv .venv; fi
@@ -31,9 +34,10 @@ api:
 
 worker:
 	@echo "[Worker] Starting Dramatiq (loading .env if present) ..."
-	@. .venv/bin/activate && bash -lc 'set -a; [ -f .env ] && . .env; set +a; \
-		python -m dramatiq --processes 1 --threads 4 --path $(PROJECT_ROOT) \
-		app.api.broker:broker app.api.workers'
+	@. .venv/bin/activate && \
+		export $$(grep -v '^#' .env | grep -v '^$$' | xargs) 2>/dev/null || true; \
+		python -m dramatiq --processes 1 --threads 4 --path $(PROJECT_ROOT) -- \
+		app.api.broker:broker app.api.workers
 	@# Alternative (if you prefer the CLI):
 	@# . .venv/bin/activate && bash -lc 'set -a; [ -f .env ] && . .env; set +a; \
 	@#   dramatiq --processes 1 --threads 4 --path $(PROJECT_ROOT) -- \
@@ -66,3 +70,14 @@ metrics:
 
 check-redis:
 	@redis-cli ping || (echo "Redis not running. Start with: brew services start redis" && exit 1)
+
+plane-a-index:
+	@echo "[Plane-A] Building index with BGE embeddings..."
+	@. .venv/bin/activate && python -c "from app.api.plane_a_index import build_index; build_index(reset=True)"
+
+plane-a-health:
+	@curl -s http://localhost:8000/api/runs/plane-a/health | python -m json.tool
+
+plane-a-ask:
+	@if [ -z "$(Q)" ]; then echo "Usage: make plane-a-ask Q='What PII do we store?'"; exit 1; fi
+	@curl -s --get "http://localhost:8000/api/runs/plane-a/ask" --data-urlencode "q=$(Q)" | python -m json.tool
