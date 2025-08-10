@@ -1,14 +1,12 @@
 "use client"
 import { QuestionResponse } from "../../components/layout/QuestionResponse"
-import { ProgressMobileStepper } from "../layout/ProgressMobileStepper";
 
 // TODO: 
-export default interface Props {
-    // data: {question: [], response: []};
-    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-}
+// export default interface Props {
+//     // data: {question: [], response: []};
+// }
 
-export const AutoFillResults = ({setCurrentStep}: Props) => {
+export const AutoFillResults = () => {
     return (
         <div className="min-h-screen flex flex-col">
             <div className="flex-1 flex items-start justify-center px-4 pt-8 pb-8">
