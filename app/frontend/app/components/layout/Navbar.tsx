@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,6 +11,8 @@ import MenuItem from "@mui/material/MenuItem";
 export const Navbar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -43,46 +44,36 @@ export const Navbar = () => {
       </Typography>
 
       {/* Middle Button Group (Centered) */}
-      <Stack
-        sx={{
+      <div
+        style={{
           position: "absolute",
           left: "50%",
           transform: "translateX(-50%)",
         }}
       >
-        <ButtonGroup
-          variant="outlined"
-          aria-label="navigation buttons"
-          sx={{
-            borderColor: "black",
-          }}
-        >
-          <Button
-            sx={{
-              color: "black",
-              borderColor: "black",
-              "&:hover": {
-                borderColor: "black",
-                backgroundColor: "rgba(0, 0, 0, 0.04)",
-              },
-            }}
+        <div className="bg-gray-100 rounded-lg p-1">
+          <button
+            onClick={() => router.push('/pages/ai-fill')}
+            className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+              pathname === '/pages/ai-fill'
+                ? 'bg-white text-black shadow-sm'
+                : 'text-gray-600 hover:text-black'
+            }`}
           >
             AI Auto-Fill Answers
-          </Button>
-          <Button
-            sx={{
-              color: "black",
-              borderColor: "black",
-              "&:hover": {
-                borderColor: "black",
-                backgroundColor: "rgba(0, 0, 0, 0.04)",
-              },
-            }}
+          </button>
+          <button
+            onClick={() => router.push('/pages/questionnaire')}
+            className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${
+              pathname === '/pages/questionnaire'
+                ? 'bg-white text-black shadow-sm'
+                : 'text-gray-600 hover:text-black'
+            }`}
           >
             Generate Vendor Questionnaire
-          </Button>
-        </ButtonGroup>
-      </Stack>
+          </button>
+        </div>
+      </div>
 
       {/* Avatar with Dropdown */}
       <Avatar
