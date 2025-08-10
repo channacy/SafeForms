@@ -2,8 +2,8 @@
 
 interface Props {
   results: any[];
-  emails: { email1: string; email2: string };
-  setEmails: (e: { email1: string; email2: string }) => void;
+  emails: { email1: string };
+  setEmails: (e: { email1: string }) => void;
   apiStatus: string;
   setApiStatus: (v: string) => void;
   sendCompletion: (subject: string, preface: string) => Promise<void>;

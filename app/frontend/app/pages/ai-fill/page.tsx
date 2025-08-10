@@ -8,7 +8,6 @@ import { QuestionInput } from '../../components/sections/QuestionInput';
 import { ConfirmationResult } from '../../components/sections/ConfirmationResult'
 
 import {
-  health,
   askWithHistory,
   sendProgress,
   sendCompletion,
@@ -29,7 +28,7 @@ export default function Page() {
     confidence_reasoning?: string;
     sources?: string[];
   }>>([]);
-  const [emails, setEmails] = useState({ email1: '', email2: '' });
+  const [emails, setEmails] = useState({ email1: '' });
   const [apiStatus, setApiStatus] = useState('');
   const [activeStep, setActiveStep] = useState(0);
   const [nextEnabled, setNextEnabled] = useState(false);
@@ -77,14 +76,14 @@ export default function Page() {
   };
 
   const handleSendProgress = async (subject: string, message: string) => {
-    const { email1, email2 } = emails;
+    const { email1 } = emails;
     const isValid = (e: string) => /.+@.+\..+/.test(e);
-    if (!isValid(email1) || !isValid(email2)) {
+    if (!isValid(email1)) {
       setApiStatus('Please enter two valid recipient emails before sending progress.');
       return;
     }
     try {
-      const to = [email1.trim(), email2.trim()];
+      const to = [email1.trim()];
       const r = await sendProgress(subject || 'Progress Update', message || '', to);
       setApiStatus(`Progress email sent to: ${r.to.join(', ')}`);
     } catch (e: any) {
@@ -93,9 +92,9 @@ export default function Page() {
   };
 
   const handleSendCompletion = async (subject: string, preface: string) => {
-    const { email1, email2 } = emails;
+    const { email1 } = emails;
     const isValid = (e: string) => /.+@.+\..+/.test(e);
-    if (!isValid(email1) || !isValid(email2)) {
+    if (!isValid(email1)) {
       setApiStatus('Please enter two valid recipient emails before sending completion.');
       return;
     }
@@ -109,7 +108,7 @@ export default function Page() {
       if (suggestions.length > 0) {
         await upsertSuggestions(sid, suggestions);
       }
-      const to = [email1.trim(), email2.trim()];
+      const to = [email1.trim()];
       const resp = await sendCompletion(sid, subject || 'Job Completed', preface || null, to);
       setApiStatus(`Completion email sent to: ${resp.to.join(', ')} · accepted suggestions included: ${resp.accepted_count}`);
     } catch (e: any) {
@@ -150,8 +149,6 @@ export default function Page() {
     </div>
   );
 }
-
-
 
 // 'use client';
 
