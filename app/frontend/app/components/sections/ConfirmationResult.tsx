@@ -17,7 +17,6 @@ export const ConfirmationResult = ({ results, emails, setEmails, apiStatus, send
         await sendCompletion('Job Completed', 'Accepted AI suggestions are included below.');
       };
 
-    const [email, setEmail] = useState('');
     const [changes, setChanges] = useState(`Question: What is the software?
         Previous Response: A code editor with installed
         Updated Response: A comprehensive code editor with AI-powered features installed
