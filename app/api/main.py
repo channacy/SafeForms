@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import importlib
 from typing import Optional
@@ -12,6 +13,13 @@ except Exception:
     # dotenv is optional; continue if unavailable
     pass
 
+# Ensure Dramatiq broker is initialized in this process so .send() enqueues tasks
+try:
+    import app.api.broker  # noqa: F401
+except Exception:
+    # If broker import fails, API still starts; enqueueing will raise at call site
+    pass
+
 class _Settings:
     def __init__(self) -> None:
         # Parse ALLOWED_ORIGINS from env (comma-separated), default to localhost:3000
@@ -19,7 +27,13 @@ class _Settings:
         if env_val:
             self.ALLOWED_ORIGINS = [o.strip() for o in env_val.split(",") if o.strip()]
         else:
-            self.ALLOWED_ORIGINS = ["http://localhost:3000"]
+            # Allow common local dev ports to avoid CORS issues when Next.js falls back to 3001
+            self.ALLOWED_ORIGINS = [
+                "http://localhost:3000",
+                "http://localhost:3001",
+                "http://127.0.0.1:3000",
+                "http://127.0.0.1:3001",
+            ]
 
 # Try to import settings module if present; otherwise use env-based fallback
 try:
@@ -33,14 +47,22 @@ except Exception:
 
 app = FastAPI(title="SafeForms API", version="0.1.0")
 
-# CORS
-origins = getattr(app_settings, "ALLOWED_ORIGINS", ["http://localhost:3000"])  # type: ignore
+# CORS - Be permissive for local development
+origins = getattr(app_settings, "ALLOWED_ORIGINS", [
+    "http://localhost:3000",
+    "http://localhost:3001", 
+    "http://localhost:3002",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+    "http://127.0.0.1:3002"
+])  # type: ignore
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 
@@ -76,4 +98,11 @@ try:
     from .db import init_db  # type: ignore
     init_db()
 except Exception:
+    pass
+
+# Serve exported PDFs
+try:
+    app.mount("/exports", StaticFiles(directory="exports"), name="exports")
+except Exception:
+    # Directory may not exist until first export; mounting failure is non-fatal
     pass

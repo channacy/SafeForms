@@ -4,6 +4,11 @@ from sentence_transformers import SentenceTransformer
 from .plane_a_index import build_index, load_index
 from .plane_a_reader import decide_answer
 
+# Load BGE model once at startup, explicitly setting the device to CPU to fix initialization errors
+print("[Worker] Initializing BGE model...")
+BGE_MODEL = SentenceTransformer("BAAI/bge-small-en-v1.5", device='cpu')
+print("[Worker] BGE model initialized.")
+
 def retrieve_passages(question: str, top_k: int = 5) -> List[Dict[str, Any]]:
     """Retrieve top-k most relevant passages using BGE embeddings + sklearn"""
     # Load or build index
@@ -17,11 +22,8 @@ def retrieve_passages(question: str, top_k: int = 5) -> List[Dict[str, Any]]:
     index = index_data["index"]
     metadata = index_data["metadata"]
     
-    # Load BGE model for query encoding
-    bge = SentenceTransformer("BAAI/bge-small-en-v1.5")
-    
-    # Encode query
-    query_embedding = bge.encode([question], normalize_embeddings=True)
+    # Encode query using the pre-loaded global model
+    query_embedding = BGE_MODEL.encode([question], normalize_embeddings=True)
     
     # Search sklearn index
     distances, indices = index.kneighbors(query_embedding, n_neighbors=min(top_k, len(metadata)))
@@ -86,23 +88,45 @@ def query_plane_a(question: str, tau: float = 1.5) -> Dict[str, Any]:
         "debug_info": verdict.get("debug_info", {})
     }
 
-def health_check() -> Dict[str, Any]:
-    """Check if Plane-A is ready (models loaded, index exists)"""
+def health_check(deep: bool = False) -> Dict[str, Any]:
+    """Check Plane-A readiness.
+
+    When deep=False (default): fast check that avoids model loading.
+    When deep=True: also load QA model to verify heavy dependencies.
+    """
     try:
-        index_data = load_index()
-        if index_data is None:
+        import os
+        from .plane_a_index import INDEX_PATH
+        
+        # Fast check: just verify index file exists
+        if not os.path.exists(INDEX_PATH):
             return {
                 "status": "not_ready",
                 "error": "Index not found",
                 "suggestion": "Run POST /api/runs/plane-a/build-index or make plane-a-index"
             }
-        
+
+        if not deep:
+            return {
+                "status": "index_ready",
+                "embeddings": "BAAI/bge-small-en-v1.5",
+                "note": "Use deep=true to load models"
+            }
+
+        # Deep check: actually load index and models
+        index_data = load_index()
+        if index_data is None:
+            return {
+                "status": "error",
+                "error": "Index file exists but failed to load"
+            }
+
         count = len(index_data["metadata"])
-        
-        # Test model loading
+
+        # Load model (can be slow on first run)
         from .plane_a_reader import _load_model
         _load_model()
-        
+
         return {
             "status": "ready",
             "indexed_chunks": count,
@@ -115,3 +139,12 @@ def health_check() -> Dict[str, Any]:
             "error": str(e),
             "suggestion": "Check dependencies or rebuild index"
         }
+
+def warmup_models() -> Dict[str, Any]:
+    """Load heavy QA model into memory to reduce first-request latency."""
+    try:
+        from .plane_a_reader import _load_model
+        _load_model()
+        return {"status": "warmed"}
+    except Exception as e:
+        return {"status": "error", "error": str(e)}

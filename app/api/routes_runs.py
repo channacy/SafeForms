@@ -6,7 +6,7 @@ from app.api.workers import process_question
 
 router = APIRouter()
 
-@router.post("/api/runs/batch")
+@router.post("/api/batch/run")
 def create_batch(payload: Dict):
     questions: List[str] = payload.get("questions") or []
     session_id: str = payload.get("session_id") or None
@@ -15,11 +15,13 @@ def create_batch(payload: Dict):
     db = SessionLocal()
     run = Run(session_id=session_id)
     db.add(run); db.commit(); db.refresh(run)
+    created: List[Dict[str, str]] = []
     for qtext in questions:
         q = Question(run_id=run.id, text=qtext)
         db.add(q); db.commit(); db.refresh(q)
+        created.append({"id": str(q.id), "text": q.text})
         process_question.send(str(run.id), str(q.id))
-    return {"run_id": str(run.id)}
+    return {"run_id": str(run.id), "questions": created}
 
 @router.post("/api/review/{question_id}/approve")
 def approve(question_id: str, actor: str = "reviewer@example.com"):

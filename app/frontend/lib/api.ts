@@ -1,4 +1,5 @@
-export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+// Use relative paths for Next.js API route handlers which act as a proxy
+export const API_BASE = '';
 
 export async function health() {
   const res = await fetch(`${API_BASE}/api/health`, { cache: 'no-store' });
@@ -33,44 +34,45 @@ export async function submitApprovals(token: string, decisions: Array<{ suggesti
 }
 
 export async function ask(query: string) {
-  const url = `${API_BASE}/api/runs/ask?q=${encodeURIComponent(query)}`;
+  const url = `${API_BASE}/api/runs/plane-a/ask?q=${encodeURIComponent(query)}`;
   const res = await fetch(url, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error(`Ask failed: ${res.status}`);
   }
-  return res.json() as Promise<{
-    question: string;
-    best_policy: string;
-    confidence: number;
-    engine: string;
-    answer?: string;
-    llm_engine?: string;
-  }>;
+  const planeAResult = await res.json();
+  
+  // Transform Plane-A response to match expected format
+  return {
+    question: planeAResult.question,
+    best_policy: planeAResult.citations?.[0]?.doc_id || "unknown",
+    confidence: planeAResult.confidence_docqa,
+    engine: planeAResult.engine,
+    answer: planeAResult.answer,
+    llm_engine: "plane-a",
+    action: planeAResult.action,
+    model_confidence: planeAResult.confidence_docqa,
+    sources: planeAResult.citations?.map((c: any) => `${c.doc_id} - ${c.quote}`) || []
+  };
 }
 
 export async function askWithHistory(question: string, history: Array<{ question: string; answer?: string | null; action?: string | null }>) {
-  const url = `${API_BASE}/api/runs/ask`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    cache: 'no-store',
-    body: JSON.stringify({ question, history }),
-  });
-  if (!res.ok) {
-    throw new Error(`Ask (POST) failed: ${res.status}`);
-  }
-  return res.json() as Promise<{
-    question: string;
-    best_policy: string;
-    confidence: number;
-    engine: string;
-    answer?: string;
-    llm_engine?: string;
-    action?: 'answer' | 'suggest' | 'flag';
-    model_confidence?: number;
-    confidence_reasoning?: string;
-    sources?: string[];
-  }>;
+  // Plane-A doesn't use history - it's strict extractive QA only
+  // Use the same ask function but ignore history for now
+  const planeAResult = await ask(question);
+  
+  // Transform to match expected format
+  return {
+    question: planeAResult.question,
+    best_policy: planeAResult.best_policy,
+    confidence: planeAResult.confidence,
+    engine: planeAResult.engine,
+    answer: planeAResult.answer,
+    llm_engine: planeAResult.llm_engine,
+    action: planeAResult.action as 'answer' | 'suggest' | 'flag',
+    model_confidence: planeAResult.model_confidence,
+    confidence_reasoning: planeAResult.action === 'flag' ? 'Abstained due to low confidence' : 'Extractive answer from policy',
+    sources: planeAResult.sources
+  };
 }
 
 export async function sendProgress(subject: string, message: string, to: string[]) {

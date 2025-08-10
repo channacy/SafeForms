@@ -53,7 +53,7 @@ db-setup:
 
 run-batch:
 	@echo "[Batch] Creating demo batch run ..."
-	@curl -s -X POST http://localhost:8000/api/runs/batch \
+	@curl -s -X POST http://localhost:8000/api/batch/run \
 		-H "Content-Type: application/json" \
 		-d '{"questions":["What PII do we store?","Do we encrypt data at rest?"],"session_id":"test-run-1"}'
 
@@ -70,6 +70,23 @@ metrics:
 
 check-redis:
 	@redis-cli ping || (echo "Redis not running. Start with: brew services start redis" && exit 1)
+
+kill-api:
+	@echo "[Kill] Stopping FastAPI on :8000 if running ..."
+	@PIDS=$$(lsof -ti tcp:8000 || true); \
+	if [ -n "$$PIDS" ]; then echo "Killing $$PIDS"; kill -9 $$PIDS; else echo "No API listening on :8000"; fi
+
+kill-worker:
+	@echo "[Kill] Stopping Dramatiq workers ..."
+	@PK=$$(pgrep -fl "python -m dramatiq|dramatiq" || true); \
+	if [ -n "$$PK" ]; then echo "Found:"; echo "$$PK"; pkill -f "python -m dramatiq" || true; pkill -f " dramatiq" || true; else echo "No dramatiq workers found"; fi
+
+kill-frontend:
+	@echo "[Kill] Stopping Next.js on :3000/:3001 if running ..."
+	@for PORT in 3000 3001; do \
+	  P=$$(lsof -ti tcp:$$PORT || true); \
+	  if [ -n "$$P" ]; then echo "Killing Next.js on :$$PORT (PID $$P)"; kill -9 $$P; else echo "No server on :$$PORT"; fi; \
+	done
 
 plane-a-index:
 	@echo "[Plane-A] Building index with BGE embeddings..."
