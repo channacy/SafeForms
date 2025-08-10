@@ -128,30 +128,127 @@ if __name__ == "__main__":
         print(json.dumps(row, ensure_ascii=False))
 
 
-def query(q: str) -> Dict[str, object]:
+from typing import Any, Optional
+
+
+def query(q: str, history: Optional[List[Dict[str, Any]]] = None) -> Dict[str, object]:
     """Single-query RAG entrypoint used by `/api/runs/ask`.
-    Returns a dict with best policy and confidence.
+    Returns retrieval metadata and, if available, an LLM-generated structured answer with action.
     """
+    # Retrieve best policy by similarity
+    retrieval_engine = "cosine"
+    name: str
+    score: float
+    policy_text: str = ""
+
     if _HAS_CHROMA:
         client = chromadb.Client()  # type: ignore
         collection = client.get_or_create_collection(name="policy_collection")
         # Ensure policies are present (idempotent upserts)
-        for fname, text in _read_policies().items():
+        policies_map = _read_policies()
+        for fname, text in policies_map.items():
             collection.upsert(documents=[text], ids=[fname])
         name, score = _best_policy_chroma(q, collection)
-        return {
-            "question": q,
-            "best_policy": name,
-            "confidence": score,
-            "engine": "chroma",
-        }
+        retrieval_engine = "chroma"
+        policy_text = policies_map.get(name, "")
+    else:
+        policies_map = _read_policies()
+        name, score = _best_policy_cosine(q, policies_map)
+        policy_text = policies_map.get(name, "")
 
-    # Fallback cosine path
-    policies = _read_policies()
-    name, score = _best_policy_cosine(q, policies)
+    # Generate answer using OpenAI if API key is present
+    answer: str = ""
+    llm_engine: str = ""
+    action: str = "flag"
+    model_confidence: float = 0.0
+    confidence_reasoning: str = ""
+    sources: List[str] = []
+    try:
+        from openai import OpenAI  # type: ignore
+        import os
+        import json
+
+        if os.getenv("OPENAI_API_KEY"):
+            llm_engine = "openai:gpt-4o-mini"
+            _client = OpenAI()
+            system_msg = (
+                "You are an AI compliance assistant. You are an expert in vendor security and at filling out vendor security questionnaires.\n"
+                "Your task is to fill out a vendor security questionnaire using ONLY the provided policy document excerpts and previous questions answered.\n\n"
+                "Allowed Actions:\n"
+                "1. Answer – If you are highly confident (>= 0.80).\n"
+                "2. Suggest – If you are moderately confident (0.50–0.79).\n"
+                "3. Flag for Review – If you are low confidence (< 0.50) or cannot find sufficient evidence.\n\n"
+                "Rules:\n"
+                "* Use only the provided context; do not invent information.\n"
+                "* Always include exact evidence with document ID and section/snippet.\n"
+                "* Never leave sources empty unless you are flagging for review.\n\n"
+                "Output MUST be valid JSON with keys: action, answer, confidence, confidence_reasoning, sources."
+            )
+
+            hist_lines: List[str] = []
+            for h in history or []:
+                qh = h.get("question")
+                ah = h.get("answer")
+                act = h.get("action")
+                hist_lines.append(f"Q: {qh}\nA({act}): {ah}")
+            session_history = "\n\n".join(hist_lines) if hist_lines else "(none)"
+
+            snippet = policy_text[:800].replace("\n\n", "\n").strip()
+            sources = [f"{name} - snippet: {snippet[:160]}..."] if snippet else [name]
+
+            user_content = (
+                "Session History (newest first):\n" + session_history + "\n\n" +
+                "Context Document ID: " + name + "\n" +
+                "Context Excerpt:\n" + policy_text[:6000] + "\n\n" +
+                "Now, based ONLY on the context above, process the following question:\n" +
+                q + "\n\n" +
+                "Respond ONLY with JSON of the form:\n" +
+                '{"action": "answer|suggest|flag", "answer": "<string or null>", "confidence": <0.0-1.0>, "confidence_reasoning": "<brief>", "sources": ["<docID> - <section/snippet>", ...]}'
+            )
+            resp = _client.chat.completions.create(
+                model="gpt-4o-mini",
+                temperature=0.2,
+                messages=[
+                    {"role": "system", "content": system_msg},
+                    {"role": "user", "content": user_content},
+                ],
+            )
+            raw = (resp.choices[0].message.content or "").strip()
+            try:
+                parsed = json.loads(raw)
+            except Exception:
+                # try to extract JSON substring
+                start = raw.find("{")
+                end = raw.rfind("}")
+                parsed = json.loads(raw[start:end+1]) if start != -1 and end != -1 else {}
+
+            action = str(parsed.get("action", "flag")).lower()
+            if action not in {"answer", "suggest", "flag"}:
+                action = "flag"
+            answer = (parsed.get("answer") or "").strip()
+            model_confidence = float(parsed.get("confidence", 0.0))
+            confidence_reasoning = (parsed.get("confidence_reasoning") or "").strip()
+            srcs = parsed.get("sources") or []
+            if isinstance(srcs, list):
+                sources = [str(s) for s in srcs]
+            if not sources:
+                sources = [name]
+        else:
+            llm_engine = ""
+            answer = ""
+    except Exception:
+        # Leave answer empty on any LLM error; retrieval info still returned
+        answer = ""
+
     return {
         "question": q,
         "best_policy": name,
         "confidence": score,
-        "engine": "cosine",
+        "engine": retrieval_engine,
+        "answer": answer,
+        "llm_engine": llm_engine,
+        "action": action,
+        "model_confidence": model_confidence,
+        "confidence_reasoning": confidence_reasoning,
+        "sources": sources,
     }
