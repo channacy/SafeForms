@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Divider } from '@mui/material';
 
 interface Props {
   question: string;
@@ -20,7 +19,7 @@ export const QuestionResponse = ({ question, response, confidenceScore }: Props)
   return (
     <Box
       sx={{
-        flex: 1, // expands to fill parent height in a flex container
+        flex: 1, 
         width: 900,
         p: 2,
         gap: 2,
@@ -32,7 +31,6 @@ export const QuestionResponse = ({ question, response, confidenceScore }: Props)
         display: 'flex',
         flexDirection: 'column',
       }}
-      className="mt-16"
     >
       <h1 className='font-semibold'>{question}</h1>
       <Box component="form">
@@ -63,10 +61,10 @@ export const QuestionResponse = ({ question, response, confidenceScore }: Props)
       sx={{
         backgroundColor: getBgColor(confidenceScore),
         borderRadius: '8px',
-        width: '10em',
+        width: '11em'
       }}
     >
-        <p>Confidence Score: {confidenceScore}</p>
+        <p>Confidence Score: {confidenceScore}%</p>
         </Box>
     </Box>
   );
