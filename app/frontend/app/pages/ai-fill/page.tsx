@@ -18,7 +18,7 @@
 //       <ProgressMobileStepper currentStep={activeStep} setCurrentStep={setActiveStep} nextStepEnabled={nextEnabled}/>
 //       {/* Main content area */}
 //       {activeStep == 0 && <QuestionInput userInput={userInput} setCurrentStep={setActiveStep} setNextStep={setNextEnabled}/>}
-//       {activeStep == 1 && <AutoFillResults setCurrentStep={setActiveStep}/>}
+//       {activeStep == 1 && <AutoFillResults />}
 //       {activeStep == 2 && <ConfirmationResult />}
 //     </div>
 //   );
@@ -65,9 +65,8 @@ export default function AIFillPage() {
   }, [text]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-emerald-50">
       <Navbar />
-
       <div className="flex-1 flex items-start justify-center px-4 pt-20 pb-8">
         <div className="w-full max-w-4xl">
           {/* Recipients */}

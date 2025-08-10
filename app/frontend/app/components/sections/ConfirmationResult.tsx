@@ -80,7 +80,7 @@ export const ConfirmationResult = () => {
                     </div>
                     
                     {/* Submit button */}
-                    <div className="flex justify-center">
+                    <div className="flex justify-center gap-4">
                         <button
                             onClick={handleSubmit}
                             className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 
@@ -88,7 +88,16 @@ export const ConfirmationResult = () => {
                                      disabled:bg-gray-300 disabled:cursor-not-allowed"
                             disabled={!email.trim()}
                         >
-                            Submit
+                            Download
+                        </button>
+                        <button
+                            onClick={handleSubmit}
+                            className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 
+                                     font-medium shadow-lg hover:shadow-xl transition-all duration-200 
+                                     disabled:bg-gray-300 disabled:cursor-not-allowed"
+                            disabled={!email.trim()}
+                        >
+                            Send Email
                         </button>
                     </div>
                 </div>
