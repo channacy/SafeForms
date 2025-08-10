@@ -1,0 +1,1315 @@
+{
+    "from": "Pear Inc.",
+    "date": "2025-08-07",
+    "questions": [
+      {
+        "q": "Does your organization maintain a formal, documented information security policy that is approved by management and communicated to all personnel?",
+        "answer": "Yes, Boogle Inc.'s Information Security Policy is documented, approved by the CTO, and applies to all personnel, including employees and contractors. It is reviewed at least annually.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "N/A"
+          }
+        ]
+      },
+      {
+        "q": "Does your organization conduct formal risk assessments at least annually to identify threats and vulnerabilities to information assets?",
+        "answer": "Yes, per our Information Security Policy (Section 3.1), Boogle Inc. conducts regular risk assessments at least annually to identify, analyze, and evaluate threats.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "3.1"
+          }
+        ]
+      },
+      {
+        "q": "Do you have a formal data classification policy with specific handling requirements for each data level?",
+        "answer": "Yes, our Information Security Policy (Section 4.0) defines four data classifications: Public, Internal, Confidential, and Restricted. Each classification has specific handling requirements regarding storage, transmission, and access.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "4.0"
+          }
+        ]
+      },
+      {
+        "q": "Do you provide mandatory security awareness training to all new personnel upon hiring and on an ongoing basis (at least annually)?",
+        "answer": "Yes, all new personnel receive security awareness training during onboarding, and all personnel are required to complete security awareness training annually, as stated in our Information Security Policy (Section 11.0).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "11.0"
+          }
+        ]
+      },
+      {
+        "q": "Does your organization maintain a formal data privacy policy that complies with major regulations like GDPR and CCPA?",
+        "answer": "Yes, Boogle Inc. maintains a comprehensive Data Privacy Policy that outlines our commitment to complying with GDPR and CCPA, detailing data subject rights and our lawful basis for processing.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "N/A"
+          }
+        ]
+      },
+      {
+        "q": "Are there defined roles and responsibilities for information security within the organization?",
+        "answer": "Yes, the Information Security Policy (Section 2.0) clearly defines the security responsibilities for the Head of IT/Security, Managers, and all personnel.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "2.0"
+          }
+        ]
+      },
+      {
+        "q": "Is there a formal process for granting exceptions to security policies?",
+        "answer": "Yes, the Information Security Policy (Section 12.2) states that any exception must be formally requested, documented, and approved by the Head of IT/Security.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "12.2"
+          }
+        ]
+      },
+      {
+        "q": "Are information security policies reviewed and updated at least annually?",
+        "answer": "Yes, the Information Security Policy (Section 12.3) and Encryption Standards Policy (Section 6.0) mandate an annual review and update cycle.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "12.3"
+          },
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "6.0"
+          }
+        ]
+      },
+      {
+        "q": "Does the Information Security Policy apply to all information assets, regardless of form or location?",
+        "answer": "Yes, the scope of the Information Security Policy (Section 1.2) applies to all information assets owned, leased, or managed by Boogle Inc.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "1.2"
+          }
+        ]
+      },
+      {
+        "q": "Are managers responsible for ensuring their teams comply with the security policy?",
+        "answer": "Yes, the Information Security Policy (Section 2.2) explicitly states that managers are responsible for ensuring their teams understand and comply with the policy.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "2.2"
+          }
+        ]
+      },
+      {
+        "q": "Is the Chief Technology Officer (CTO) the designated owner of the Access Control and Encryption policies?",
+        "answer": "Yes, the Access Control Policy and Encryption Standards Policy documents both list the CTO as the 'Policy Owner'.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "N/A"
+          },
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "N/A"
+          }
+        ]
+      },
+      {
+        "q": "Are policy violations reported to law enforcement when appropriate?",
+        "answer": "Yes, the Acceptable Use Policy (Section 6.2) states that illegal activities will be reported to the appropriate law enforcement authorities.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "6.2"
+          }
+        ]
+      },
+      {
+        "q": "Does your organization have a dedicated budget for its information security program?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Are security metrics collected and reported to senior management on a regular basis?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Are background checks conducted for all new employees as part of the hiring process?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Is there a formal employee offboarding process that ensures timely revocation of all physical and logical access upon termination?",
+        "answer": "Yes, our Access Control Policy (Section 3.3.3) mandates that upon employee termination, HR and the manager must immediately notify IT to revoke all system access by the end of the employee's last day. Physical access is also revoked.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.3.3"
+          }
+        ]
+      },
+      {
+        "q": "Is there a formal process to review and adjust access rights when an employee changes roles or transfers departments?",
+        "answer": "Yes, the Access Control Policy (Section 3.3.2) requires a review of user access rights upon transfer or role change. Previous access is revoked and new access is granted based on the new role's requirements.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.3.2"
+          }
+        ]
+      },
+      {
+        "q": "Are security training and policy acknowledgment part of the employee onboarding process?",
+        "answer": "Yes, the Information Security Policy (Section 11.1) requires all new personnel to receive security awareness training as part of their onboarding.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "11.1"
+          }
+        ]
+      },
+      {
+        "q": "Are employees required to sign confidentiality or non-disclosure agreements as a condition of employment?",
+        "answer": "Yes, the Access Control Policy (Section 3.7) requires this for third parties, implying a similar or stronger requirement exists for employees handling sensitive data.",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.7"
+          }
+        ]
+      },
+      {
+        "q": "Is user access to systems and data based on the principle of least privilege and formal role-based access control (RBAC)?",
+        "answer": "Yes, our Access Control Policy (Sections 3.1 & 3.2) is built on the principles of least privilege and RBAC. Users are assigned to predefined roles and given only the minimum access required for their job functions.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.1"
+          },
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.2"
+          }
+        ]
+      },
+      {
+        "q": "Are user access rights reviewed on a regular basis (at least quarterly) to ensure they remain appropriate?",
+        "answer": "Yes, the IT Department and department managers conduct quarterly access reviews for all employees to verify that current access levels are appropriate, as required by our Access Control Policy (Section 3.5).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.5"
+          }
+        ]
+      },
+      {
+        "q": "Is a unique User ID assigned to each individual, and is the sharing of user accounts strictly prohibited?",
+        "answer": "Yes, the Access Control Policy (Section 3.4) requires that all users are assigned a unique User ID and explicitly forbids the sharing of user accounts or credentials.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.4"
+          }
+        ]
+      },
+      {
+        "q": "Do you enforce a strong password policy for all systems?",
+        "answer": "Yes, our Password Policy (Information Security Policy, Section 5.3) requires a minimum length of 12 characters, a mix of uppercase, lowercase, numbers, and symbols, a history of 5 previous passwords, and a 90-day expiration period.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "5.3"
+          }
+        ]
+      },
+      {
+        "q": "Is Multi-Factor Authentication (MFA) required for all remote access and for access to systems containing sensitive data?",
+        "answer": "Yes, MFA is mandatory for all remote access to the Boogle Inc. network and for all applications and systems containing Confidential or Restricted data, per our Information Security Policy (Section 5.4).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "5.4"
+          }
+        ]
+      },
+      {
+        "q": "Is all remote access to the internal corporate network required to go through a company-approved VPN?",
+        "answer": "Yes, our Access Control Policy (Section 3.6) states that all remote access must be conducted through the company-approved VPN, and that split-tunneling is prohibited.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.6"
+          }
+        ]
+      },
+      {
+        "q": "Is access for third-party vendors time-limited and restricted only to the systems necessary for their engagement?",
+        "answer": "Yes, the Access Control Policy (Section 3.7) requires that third-party access must be sponsored, time-limited, and restricted to only necessary systems. Accounts are automatically disabled upon contract expiration.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.7"
+          }
+        ]
+      },
+      {
+        "q": "Are all access requests formally approved by a manager?",
+        "answer": "Yes, the Access Control Policy (Section 3.3.1) requires a formal access request from the hiring manager for new employees.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.3.1"
+          }
+        ]
+      },
+      {
+        "q": "Are passwords required to be changed every 90 days?",
+        "answer": "Yes, the Information Security Policy (Section 5.3) specifies that passwords must be changed every 90 days.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "5.3"
+          }
+        ]
+      },
+      {
+        "q": "Is password reuse restricted?",
+        "answer": "Yes, the Information Security Policy (Section 5.3) states that users cannot reuse any of their last 5 passwords.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "5.3"
+          }
+        ]
+      },
+      {
+        "q": "Are all third parties required to sign a Non-Disclosure Agreement (NDA) before being granted system access?",
+        "answer": "Yes, the Access Control Policy (Section 3.7) requires all third parties to sign an NDA before access is granted.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.7"
+          }
+        ]
+      },
+      {
+        "q": "Is there an annual review of access to highly sensitive systems?",
+        "answer": "Yes, the Access Control Policy (Section 3.5) mandates an annual review of access to highly sensitive systems.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.5"
+          }
+        ]
+      },
+      {
+        "q": "Is split-tunneling prohibited on the corporate VPN?",
+        "answer": "Yes, the Access Control Policy (Section 3.6) explicitly prohibits split-tunneling on the VPN.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.6"
+          }
+        ]
+      },
+      {
+        "q": "Are access rights for terminated employees revoked by the end of their last day?",
+        "answer": "Yes, the Access Control Policy (Section 3.3.3) specifies that all of the user's access will be revoked by the end of their last day of employment.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.3.3"
+          }
+        ]
+      },
+      {
+        "q": "Are default vendor passwords changed before systems are deployed into production?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Is data encrypted in transit over public networks using strong, industry-standard protocols?",
+        "answer": "Yes, our Encryption Standards Policy (Section 3.1) mandates the use of TLS 1.2 or higher for all data transmitted over public networks. Outdated protocols like SSL and early TLS versions are prohibited.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.1"
+          }
+        ]
+      },
+      {
+        "q": "Is sensitive data (e.g., customer data, financial records) encrypted at rest on servers and in databases?",
+        "answer": "Yes, our Encryption Standards Policy (Section 3.2) requires all servers and databases storing sensitive information to utilize encryption at rest, with AES-256 as the minimum standard.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.2"
+          }
+        ]
+      },
+      {
+        "q": "Are all company-issued laptops and mobile devices required to have full-disk encryption enabled?",
+        "answer": "Yes, full-disk encryption (e.g., BitLocker, FileVault) is mandatory for all company-issued laptops and mobile devices, as per our Encryption Standards Policy (Section 3.2).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.2"
+          }
+        ]
+      },
+      {
+        "q": "Do you have a formal cryptographic key management policy that includes standards for key generation, storage, rotation, and destruction?",
+        "answer": "Yes, our Encryption Standards Policy (Section 3.3) details our key management lifecycle, including requirements for secure generation, storage with strict access controls, annual rotation, and secure destruction.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.3"
+          }
+        ]
+      },
+      {
+        "q": "Are all company-managed endpoints protected by anti-malware software that is kept continuously updated?",
+        "answer": "Yes, the Information Security Policy (Section 7.1) requires that all company-managed endpoints must have approved and regularly updated anti-malware software installed and running.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "7.1"
+          }
+        ]
+      },
+      {
+        "q": "Do you have a formal change management process that includes testing and approval before changes are made to production systems?",
+        "answer": "Yes, all changes to production systems, applications, and networks must follow a formal change management process to minimize risk, as stated in our Information Security Policy (Section 7.3).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "7.3"
+          }
+        ]
+      },
+      {
+        "q": "Are system, application, and network logs collected and monitored to detect security incidents?",
+        "answer": "Yes, we collect and monitor logs to detect and respond to security incidents in accordance with our Information Security Policy (Section 7.4).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "7.4"
+          }
+        ]
+      },
+      {
+        "q": "Are regular phishing simulations conducted to train employees on identifying malicious emails?",
+        "answer": "Yes, the Information Security Policy (Section 11.3) states that regular phishing simulations will be conducted to train employees to identify and report malicious emails.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "11.3"
+          }
+        ]
+      },
+      {
+        "q": "Is the use of unencrypted removable media (e.g., USB drives) for sensitive data prohibited?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.2) prohibits the use of unencrypted removable media for storing or transporting sensitive company data.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.2"
+          }
+        ]
+      },
+      {
+        "q": "Is internal network traffic encrypted, especially between different security zones?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.1) requires encryption of sensitive data transmitted within the internal corporate network where technically feasible.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.1"
+          }
+        ]
+      },
+      {
+        "q": "Are all changes to production systems required to be tested before deployment?",
+        "answer": "Yes, the Change Management process (Information Security Policy, Section 7.3) requires that all changes must follow a formal process, including testing and approval.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "7.3"
+          }
+        ]
+      },
+      {
+        "q": "Are there security requirements for devices used for remote access?",
+        "answer": "Yes, the Access Control Policy (Section 3.6) requires devices used for remote access to comply with security standards, including up-to-date antivirus and patches.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.6"
+          }
+        ]
+      },
+      {
+        "q": "Are there policy exceptions for installing personally-owned software on company devices?",
+        "answer": "Yes, the AUP (Section 5.1) prohibits installation of personally-owned software without prior approval from the IT Department, implying an exception process exists.",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "5.1"
+          }
+        ]
+      },
+      {
+        "q": "Is there a formal policy for the secure disposal of media and hardware?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Does your organization maintain a formal, documented Incident Response Plan?",
+        "answer": "Yes, Boogle Inc. maintains a formal Incident Response Plan that outlines procedures for handling incidents through the phases of Preparation, Identification, Containment, Eradication, Recovery, and Lessons Learned (Information Security Policy, Section 10.2).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "10.2"
+          }
+        ]
+      },
+      {
+        "q": "Is there a clear process for personnel to report suspected security incidents immediately?",
+        "answer": "Yes, all personnel are required to immediately report any suspected or actual security incident to the IT department via designated channels, as outlined in our Information Security Policy (Section 10.1).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "10.1"
+          }
+        ]
+      },
+      {
+        "q": "Does your incident response capability include a plan for notifying affected individuals and regulatory authorities in the event of a data breach?",
+        "answer": "Yes, we maintain a Data Breach Notification Protocol to notify affected individuals and regulatory authorities as required by law (Information Security Policy, Section 10.3).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "10.3"
+          }
+        ]
+      },
+      {
+        "q": "Does the Incident Response Plan include a 'Lessons Learned' phase to improve security posture after an incident?",
+        "answer": "Yes, the Information Security Policy (Section 10.2) explicitly includes 'Lessons Learned' as the final phase of the incident response process.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "10.2"
+          }
+        ]
+      },
+      {
+        "q": "Is there a dedicated email address for reporting security incidents?",
+        "answer": "Yes, the Information Security Policy (Section 10.1) specifies security@boogleinc.com as a channel for reporting incidents.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "10.1"
+          }
+        ]
+      },
+      {
+        "q": "Does the organization conduct periodic tests of its Incident Response Plan?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Is critical data backed up regularly in accordance with a formal backup policy?",
+        "answer": "Yes, our Information Security Policy (Section 7.2) states that critical data is backed up regularly in accordance with the company's Backup Policy.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "7.2"
+          },
+          {
+            "type": "policy",
+            "id": "Backup Policy",
+            "section": "N/A"
+          }
+        ]
+      },
+      {
+        "q": "Are data backups tested periodically to ensure they can be successfully restored?",
+        "answer": "Yes, backups are tested periodically to ensure successful restoration, as required by our Information Security Policy (Section 7.2).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "7.2"
+          }
+        ]
+      },
+      {
+        "q": "Is there a formal, documented Backup Policy?",
+        "answer": "Yes, the Information Security Policy (Section 7.2) refers to a formal 'Backup Policy' that governs the regular backup of critical data.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "7.2"
+          },
+          {
+            "type": "policy",
+            "id": "Backup Policy",
+            "section": "N/A"
+          }
+        ]
+      },
+      {
+        "q": "Are backups stored in a secure, geographically separate location from the primary systems?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Has the organization established Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) for critical systems?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Do you perform a security risk assessment on all third-party vendors before engagement?",
+        "answer": "Yes, all third-party vendors with access to Boogle Inc. data or systems must undergo a security risk assessment before engagement (Information Security Policy, Section 9.1).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "9.1"
+          }
+        ]
+      },
+      {
+        "q": "Do your contracts with third parties include clauses requiring them to adhere to your security standards?",
+        "answer": "Yes, our Information Security Policy (Section 9.2) requires that contracts with third parties include clauses mandating adherence to our security standards and reporting of security incidents.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "9.2"
+          }
+        ]
+      },
+      {
+        "q": "Are third-party vendors required to report security incidents involving your data?",
+        "answer": "Yes, the Information Security Policy (Section 9.2) requires contracts to include clauses for third parties to report any security incidents involving Boogle Inc. data.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "9.2"
+          }
+        ]
+      },
+      {
+        "q": "Is vendor access automatically disabled upon contract expiration?",
+        "answer": "Yes, the Access Control Policy (Section 3.7) specifies that third-party accounts will be automatically disabled upon contract expiration.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.7"
+          }
+        ]
+      },
+      {
+        "q": "Is physical access to your office facilities restricted to authorized personnel and registered visitors?",
+        "answer": "Yes, access to Boogle Inc. offices is controlled and restricted to authorized personnel and escorted visitors, as per our Physical and Environmental Security policy (Section 6.1).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Physical and Environmental Security policy",
+            "section": "6.1"
+          }
+        ]
+      },
+      {
+        "q": "Is access to sensitive areas, such as server rooms, more strictly controlled and limited to specific authorized personnel?",
+        "answer": "Yes, access to sensitive areas like server rooms is restricted to authorized IT personnel only, as stated in our Access Control Policy (Section 3.8).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.8"
+          }
+        ]
+      },
+      {
+        "q": "Do you enforce a 'clean desk' and 'clear screen' policy?",
+        "answer": "Yes, our Information Security Policy (Section 6.2) requires personnel to secure sensitive information by locking screens when unattended and storing physical documents in locked cabinets.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "6.2"
+          }
+        ]
+      },
+      {
+        "q": "Are visitors required to be registered and escorted while on premises?",
+        "answer": "Yes, the Physical and Environmental Security policy (Section 6.1) states that all visitors must be registered and escorted.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Physical and Environmental Security policy",
+            "section": "6.1"
+          }
+        ]
+      },
+      {
+        "q": "Are employees prohibited from holding doors open for individuals they do not recognize?",
+        "answer": "Yes, the Access Control Policy (Section 3.8) prohibits employees from holding doors open for or granting access to unrecognized individuals.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Access Control Policy",
+            "section": "3.8"
+          }
+        ]
+      },
+      {
+        "q": "Is there a policy for securing physical documents?",
+        "answer": "Yes, the 'Clean Desk' policy (Information Security Policy, Section 6.2) requires storing physical documents in locked cabinets.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "6.2"
+          }
+        ]
+      },
+      {
+        "q": "Are sensitive areas protected by environmental controls such as fire suppression and uninterruptible power supplies (UPS)?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Does your Acceptable Use Policy prohibit the use of personal or unapproved cloud storage services for company data?",
+        "answer": "Yes, our Acceptable Use Policy (Section 5.2) strictly prohibits using personal or unapproved cloud storage services to store or share company data.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "5.2"
+          }
+        ]
+      },
+      {
+        "q": "Does your Acceptable Use Policy state that there is no expectation of privacy and that the company reserves the right to monitor IT resource usage?",
+        "answer": "Yes, the AUP (Section 2.3) clearly states that all data on company resources is company property and that Boogle Inc. reserves the right to monitor systems to ensure policy compliance.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "2.3"
+          }
+        ]
+      },
+      {
+        "q": "Does the Acceptable Use Policy prohibit the installation of unauthorized or unlicensed software on company devices?",
+        "answer": "Yes, the AUP (Section 5.1) states that users must not install any unlicensed, unauthorized, or personally-owned software on company-issued devices without prior IT approval.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "5.1"
+          }
+        ]
+      },
+      {
+        "q": "Does the Acceptable Use Policy require immediate reporting of lost or stolen devices?",
+        "answer": "Yes, the AUP (Section 4.1) requires that any loss or theft of a company device must be reported to the IT Department immediately.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "4.1"
+          }
+        ]
+      },
+      {
+        "q": "Does the Acceptable Use Policy prohibit using company resources for illegal activities?",
+        "answer": "Yes, the AUP (Section 3.1) strictly prohibits transmitting any material in violation of U.S. or international law.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "3.1"
+          }
+        ]
+      },
+      {
+        "q": "Does the AUP prohibit activities that could create a hostile work environment, such as harassment or discrimination?",
+        "answer": "Yes, the AUP (Section 3.4) prohibits creating, viewing, or transmitting content that is discriminatory or harassing, and using resources to engage in harassment or bullying.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "3.4"
+          }
+        ]
+      },
+      {
+        "q": "Does the AUP prohibit violating intellectual property rights?",
+        "answer": "Yes, the AUP (Section 3.1) prohibits violating intellectual property rights, including copyright, trademark, and patent laws.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "3.1"
+          }
+        ]
+      },
+      {
+        "q": "Does the AUP prohibit attempting to circumvent security controls?",
+        "answer": "Yes, the AUP (Section 3.2) strictly prohibits bypassing or attempting to circumvent any security controls.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "3.2"
+          }
+        ]
+      },
+      {
+        "q": "Does the AUP prohibit sending unsolicited commercial email ('spam')?",
+        "answer": "Yes, the AUP (Section 3.3) prohibits sending unsolicited commercial email or engaging in mass mailings not related to business functions.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "3.3"
+          }
+        ]
+      },
+      {
+        "q": "Are there consequences for violating the Acceptable Use Policy?",
+        "answer": "Yes, the AUP (Section 6.2) states that violations may result in disciplinary action, up to and including termination of employment or contract.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "6.2"
+          }
+        ]
+      },
+      {
+        "q": "Are corporate networks protected by firewalls?",
+        "answer": "Yes, the Communications Security policy (Section 8.1) states that the network is protected by firewalls and other security controls.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Communications Security policy",
+            "section": "8.1"
+          }
+        ]
+      },
+      {
+        "q": "Are corporate wireless networks required to use strong encryption?",
+        "answer": "Yes, all corporate wireless networks must use strong encryption (WPA2/WPA3), as per the Communications Security policy (Section 8.1).",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Communications Security policy",
+            "section": "8.1"
+          }
+        ]
+      },
+      {
+        "q": "Is network segmentation used to isolate sensitive systems and environments?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Does your Data Privacy Policy specify the lawful basis for processing personal data?",
+        "answer": "Yes, the Data Privacy Policy (Section 3.0) outlines the lawful bases for processing, including contract, consent, legitimate interests, and legal obligation.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "3.0"
+          }
+        ]
+      },
+      {
+        "q": "Does your organization sell personal data to third parties?",
+        "answer": "No, the Data Privacy Policy (Section 5.0) explicitly states that Boogle Inc. does not sell personal data.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "5.0"
+          }
+        ]
+      },
+      {
+        "q": "Do you have a process for handling Data Subject Rights (DSR) requests, such as access or erasure?",
+        "answer": "Yes, the Data Privacy Policy (Section 8.0) outlines the rights of data subjects and provides contact information for the Data Protection Officer to handle such requests.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "8.0"
+          }
+        ]
+      },
+      {
+        "q": "Is personal data retained only for as long as necessary to fulfill its intended purpose?",
+        "answer": "Yes, the Data Privacy Policy (Section 7.0) states that personal data is retained for no longer than is necessary for the purposes for which it was collected or as required by law.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "7.0"
+          }
+        ]
+      },
+      {
+        "q": "Has a Data Protection Officer (DPO) been appointed?",
+        "answer": "Yes, the Data Privacy Policy (Section 9.0) confirms the appointment of a DPO and provides contact information.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "9.0"
+          }
+        ]
+      },
+      {
+        "q": "Are third-party service providers (sub-processors) contractually obligated to protect personal data?",
+        "answer": "Yes, the Data Privacy Policy (Section 5.0) states that sub-processors are contractually obligated to protect personal data and are prohibited from using it for any other purpose.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "5.0"
+          }
+        ]
+      },
+      {
+        "q": "Are mechanisms like Standard Contractual Clauses (SCCs) used for international data transfers?",
+        "answer": "Yes, the Data Privacy Policy (Section 6.0) states that for international data transfers from the EEA, UK, or Switzerland, safeguards like SCCs are used.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "6.0"
+          }
+        ]
+      },
+      {
+        "q": "Does your Data Privacy Policy cover the personal data of employees?",
+        "answer": "Yes, the Data Privacy Policy (Section 1.2) states that its scope applies to the personal data of customers, end-users, website visitors, and employees.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "1.2"
+          }
+        ]
+      },
+      {
+        "q": "Does your organization process sensitive 'Service Data' on behalf of customers as a Data Processor?",
+        "answer": "Yes, the Data Privacy Policy (Section 4.2) describes the context where Boogle Inc. acts as a 'Data Processor' for 'Service Data' processed by customers using its software.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "4.2"
+          }
+        ]
+      },
+      {
+        "q": "When acting as a Data Processor, do you only process data according to customer instructions?",
+        "answer": "Yes, the Data Privacy Policy (Section 4.2) states that Boogle Inc. only processes Service Data in accordance with the customer's instructions and contractual agreements.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "4.2"
+          }
+        ]
+      },
+      {
+        "q": "Will customers be notified in the event of a merger or acquisition that involves their personal data?",
+        "answer": "Yes, the Data Privacy Policy (Section 5.0) states that in the event of a business transfer, customers will be notified of any change in ownership or control of their personal data.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "5.0"
+          }
+        ]
+      },
+      {
+        "q": "Does the Data Privacy Policy outline specific rights for individuals under CCPA and GDPR?",
+        "answer": "Yes, the Data Privacy Policy (Section 8.0) lists specific rights such as the Right to Access, Erasure, and Portability, and notes the Right to Opt-Out of Sale under CCPA.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Data Privacy Policy",
+            "section": "8.0"
+          }
+        ]
+      },
+      {
+        "q": "Does your organization conduct Data Protection Impact Assessments (DPIAs) for new projects involving personal data?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Are principles of 'Privacy by Design' and 'Privacy by Default' incorporated into system development?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Is AES-256 the minimum required standard for symmetric encryption at rest?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.2) specifies AES with a key length of 256 bits (AES-256) as the required minimum standard.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.2"
+          }
+        ]
+      },
+      {
+        "q": "Are outdated cryptographic protocols like SSLv3 and TLS 1.0/1.1 explicitly forbidden for data-in-transit?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.1) explicitly forbids the use of SSLv2, SSLv3, and TLS 1.0/1.1.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.1"
+          }
+        ]
+      },
+      {
+        "q": "Are cryptographic keys required to be rotated at least annually?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.3) requires that cryptographic keys used for data encryption should be rotated at least annually.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.3"
+          }
+        ]
+      },
+      {
+        "q": "Are cryptographic keys stored separately from the data they protect?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.3) requires that keys must be stored securely with strict access controls and should never be stored in plaintext alongside the data they protect.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.3"
+          }
+        ]
+      },
+      {
+        "q": "Are cryptographic keys generated using a cryptographically secure random number generator?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.3) requires keys to be generated using a cryptographically secure random number generator.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.3"
+          }
+        ]
+      },
+      {
+        "q": "Is there a formal process for securely destroying retired cryptographic keys?",
+        "answer": "Yes, the Encryption Standards Policy (Section 3.3) states that when a key is retired, it must be securely destroyed in a manner that makes it irrecoverable.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "3.3"
+          }
+        ]
+      },
+      {
+        "q": "Are application developers responsible for incorporating approved encryption protocols into the applications they build?",
+        "answer": "Yes, the Encryption Standards Policy (Section 4.0) assigns responsibility to Application Developers for incorporating approved encryption protocols and libraries into their applications.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Encryption Standards Policy",
+            "section": "4.0"
+          }
+        ]
+      },
+      {
+        "q": "Do you perform vulnerability scanning (e.g., SAST, DAST) on applications?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Is there a secure software development lifecycle (SDLC) process in place?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Do developers receive training on secure coding practices?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Are security code reviews performed as part of the development process?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Do you have a formal process for vulnerability management, including scanning and remediation?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Do you conduct regular penetration tests of your environment?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Is there a defined timeline (SLA) for patching critical vulnerabilities?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Do you have a policy defining log retention periods?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Do you use a centralized logging solution (e.g., SIEM) for log aggregation and analysis?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Is access to security logs restricted to authorized personnel?",
+        "answer": "Not Addressed in Provided Policies",
+        "confidence": 0.5,
+        "evidence": []
+      },
+      {
+        "q": "Do you have a Bring Your Own Device (BYOD) policy?",
+        "answer": "Yes, the Acceptable Use Policy (Section 4.2) outlines requirements for personal devices used to access company data, including the installation of required security software.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "4.2"
+          }
+        ]
+      },
+      {
+        "q": "Does the company have the capability to remotely wipe corporate data from personal devices used for work?",
+        "answer": "Yes, the BYOD policy (AUP, Section 4.2) requires users to grant the company the right to wipe corporate data from a personal device if it is lost, stolen, or upon employee departure.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Acceptable Use Policy",
+            "section": "4.2"
+          }
+        ]
+      },
+      {
+        "q": "Does your risk management framework include options for risk mitigation, transfer, acceptance, and avoidance?",
+        "answer": "Yes, the Information Security Policy (Section 3.2) outlines the four risk treatment options: Mitigate, Transfer, Accept, and Avoid.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "3.2"
+          }
+        ]
+      },
+      {
+        "q": "Is risk acceptance a formal process?",
+        "answer": "Yes, the Information Security Policy (Section 3.2) states that risk acceptance involves formally acknowledging and accepting the risk.",
+        "confidence": 1.0,
+        "evidence": [
+          {
+            "type": "policy",
+            "id": "Information Security Policy",
+            "section": "3.2"
+          }
+        ]
+      }
+    ]
+  }
