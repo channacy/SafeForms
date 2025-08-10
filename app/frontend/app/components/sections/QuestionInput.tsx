@@ -1,14 +1,17 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Navbar } from "../../components/layout/Navbar";
 
-export const QuestionInput = () => {
+interface Props {
+    userInput: string;
+    currentStep: number;  
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  }
+  
+export const QuestionInput = ({userInput, currentStep, setCurrentStep}: Props) => {
   const [text, setText] = useState('');
   const [mode, setMode] = useState<'ai-fill' | 'questionnaire'>('ai-fill');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const router = useRouter();
 
   // Auto-resize textarea based on content (expand downwards only)
   useEffect(() => {
@@ -31,14 +34,8 @@ export const QuestionInput = () => {
 
   const handleSubmit = () => {
     if (!text.trim()) return;
-    
-    if (mode === 'ai-fill') {
-      // Navigate to autofill page
-      router.push('/pages/ai-fill/autofill');
-    } else {
-      // Navigate to questionnaire page
-      router.push('/pages/questionnaire');
-    }
+    // go to the next step
+    setCurrentStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   return (

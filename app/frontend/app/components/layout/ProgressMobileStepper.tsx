@@ -30,7 +30,7 @@ export const ProgressMobileStepper = ({ currentStep, setCurrentStep }: ProgressM
       activeStep={currentStep}
       sx={{ maxWidth: 2000, flexGrow: 1, background: "transparent", width: "100%" }}
       nextButton={
-        <Button size="small" onClick={handleNext} disabled={currentStep === 3}>
+        <Button size="small" onClick={handleNext} disabled={currentStep === 2}>
           Next
           {theme.direction === 'rtl' ? (
             <KeyboardArrowLeft />
