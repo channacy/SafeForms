@@ -2,11 +2,12 @@
 import { QuestionResponse } from "../../components/layout/QuestionResponse"
 
 // TODO: 
-export default interface ResultsType {
-    data: {question: [], response: []};
+export default interface Props {
+    // data: {question: [], response: []};
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const AutoFillResults = () => {
+export const AutoFillResults = ({setCurrentStep}: Props) => {
     return (
         <div className="min-h-screen flex flex-col">
             <div className="flex-1 flex items-start justify-center px-4 pt-8 pb-8">
@@ -20,9 +21,9 @@ export const AutoFillResults = () => {
                         <QuestionResponse question="How is data protected?" response="No" confidenceScore={10}/>
                     </div>
                     <div className="flex justify-center mt-8">
-                        <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">
+                        <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600" onClick={() => setCurrentStep((prevActiveStep) => prevActiveStep + 1)}>
                             Continue
-                        </button>
+                </button>
                     </div>
                 </div>
             </div>
