@@ -3,7 +3,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Navbar } from "./components/layout/Navbar";
-import { health, ask } from "../lib/api";
+import { health, askWithHistory } from "../lib/api";
 
 export default function Home() {
   const [text, setText] = useState('');
@@ -16,6 +16,12 @@ export default function Home() {
     best_policy: string;
     confidence: number;
     engine: string;
+    answer?: string;
+    llm_engine?: string;
+    action?: 'answer' | 'suggest' | 'flag';
+    model_confidence?: number;
+    confidence_reasoning?: string;
+    sources?: string[];
   }[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -87,12 +93,14 @@ export default function Home() {
                 setAnswer(null);
                 setResults([]);
                 try {
+                  let history: { question: string; answer?: string | null; action?: string | null }[] = [];
                   for (const q of lines) {
                     try {
-                      const res = await ask(q);
-                      const row = { question: q, best_policy: res.best_policy, confidence: res.confidence, engine: res.engine };
+                      const res = await askWithHistory(q, history);
+                      const row = { question: q, best_policy: res.best_policy, confidence: res.confidence, engine: res.engine, answer: res.answer, llm_engine: res.llm_engine, action: res.action, model_confidence: res.model_confidence, confidence_reasoning: res.confidence_reasoning, sources: res.sources };
                       setAnswer({ best_policy: res.best_policy, confidence: res.confidence, engine: res.engine });
                       setResults(prev => [...prev, row]);
+                      history = [...history, { question: q, answer: res.answer ?? null, action: res.action ?? null }];
                     } catch (e: any) {
                       // record error row
                       const row = { question: q, best_policy: 'error', confidence: 0, engine: e?.message ?? 'error' } as any;
@@ -109,21 +117,39 @@ export default function Home() {
               className="px-4 py-2 rounded-md border border-gray-300 hover:border-gray-400 bg-white shadow-sm text-sm"
               disabled={asking || text.trim().length === 0}
             >
-              {asking ? 'Running batch…' : 'Ask RAG'}
+              {asking ? 'Asking…' : 'Ask Agent'}
             </button>
+          </div>
+
+          {/* Legend */}
+          <div className="mt-4 text-xs text-gray-700 flex items-center gap-3">
+            <span className="font-semibold">Legend:</span>
+            <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-green-100 text-green-800 border-green-300">ANSWER · 0.95</span>
+            <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-orange-100 text-orange-800 border-orange-300">SUGGEST · 0.72</span>
+            <span className="inline-block px-2 py-0.5 border rounded font-semibold bg-red-100 text-red-800 border-red-300">FLAG · 0.30</span>
+            <span className="ml-2 text-gray-500">(badge shows action and confidence)</span>
           </div>
 
           {/* Sequential Q&A results */}
           {results.length > 0 && (
             <div className="mt-6 space-y-3">
-              {results.map((r, idx) => (
+              {results.map((r, idx) => {
+                const badgeColor = r.action === 'answer' ? 'bg-green-100 text-green-800 border-green-300' : r.action === 'suggest' ? 'bg-orange-100 text-orange-800 border-orange-300' : 'bg-red-100 text-red-800 border-red-300';
+                const badgeLabel = r.action ? r.action.toUpperCase() : 'RESULT';
+                return (
                 <div key={idx} className="p-4 border rounded bg-gray-50 text-sm text-gray-800">
                   <div className="font-semibold">{idx + 1}. Q: {r.question}</div>
+                  {r.answer && (
+                    <div className="mt-1 whitespace-pre-wrap"><span className="font-semibold">{r.action === 'suggest' ? 'Suggestion' : 'Answer'}:</span> {r.answer}</div>
+                  )}
+                  <div className={`inline-block mt-2 px-2 py-0.5 border rounded text-xs font-semibold ${badgeColor}`}>{badgeLabel}{typeof r.model_confidence === 'number' ? ` · ${r.model_confidence.toFixed(2)}` : ''}</div>
                   <div className="mt-1"><span className="font-semibold">Best Policy:</span> {r.best_policy || 'n/a'}</div>
-                  <div><span className="font-semibold">Confidence:</span> {r.confidence.toFixed(3)}</div>
-                  <div><span className="font-semibold">Engine:</span> {r.engine}</div>
+                  <div><span className="font-semibold">Engine:</span> {r.engine}{r.llm_engine ? ` · ${r.llm_engine}` : ''}</div>
+                  {r.sources && r.sources.length > 0 && (
+                    <div className="mt-1"><span className="font-semibold">Sources:</span> {r.sources.join('; ')}</div>
+                  )}
                 </div>
-              ))}
+              ); })}
             </div>
           )}
         </div>
