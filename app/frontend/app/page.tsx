@@ -3,12 +3,20 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Navbar } from "./components/layout/Navbar";
-import { health } from "../lib/api";
+import { health, ask } from "../lib/api";
 
 export default function Home() {
   const [text, setText] = useState('');
   const [apiStatus, setApiStatus] = useState<string | null>(null);
   const [checking, setChecking] = useState(false);
+  const [answer, setAnswer] = useState<null | { best_policy: string; confidence: number; engine: string }>(null);
+  const [asking, setAsking] = useState(false);
+  const [results, setResults] = useState<{
+    question: string;
+    best_policy: string;
+    confidence: number;
+    engine: string;
+  }[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-resize textarea based on content
@@ -46,7 +54,7 @@ export default function Home() {
             {text.length} characters
           </div>
 
-          {/* Backend health check */}
+          {/* Controls */}
           <div className="mt-6 flex items-center gap-3">
             <button
               onClick={async () => {
@@ -68,7 +76,56 @@ export default function Home() {
             {apiStatus && (
               <span className="text-sm text-gray-700">{apiStatus}</span>
             )}
+
+            {/* Ask RAG (aligned to the right) */}
+            <span className="ml-auto" />
+            <button
+              onClick={async () => {
+                const lines = text.split('\n').map(s => s.trim()).filter(Boolean);
+                if (lines.length === 0) return;
+                setAsking(true);
+                setAnswer(null);
+                setResults([]);
+                try {
+                  for (const q of lines) {
+                    try {
+                      const res = await ask(q);
+                      const row = { question: q, best_policy: res.best_policy, confidence: res.confidence, engine: res.engine };
+                      setAnswer({ best_policy: res.best_policy, confidence: res.confidence, engine: res.engine });
+                      setResults(prev => [...prev, row]);
+                    } catch (e: any) {
+                      // record error row
+                      const row = { question: q, best_policy: 'error', confidence: 0, engine: e?.message ?? 'error' } as any;
+                      setResults(prev => [...prev, row]);
+                      setApiStatus(`Ask error for "${q}": ${e?.message ?? 'unknown'}`);
+                    }
+                    // Optional small delay for UI rendering cadence
+                    await new Promise(r => setTimeout(r, 50));
+                  }
+                } finally {
+                  setAsking(false);
+                }
+              }}
+              className="px-4 py-2 rounded-md border border-gray-300 hover:border-gray-400 bg-white shadow-sm text-sm"
+              disabled={asking || text.trim().length === 0}
+            >
+              {asking ? 'Running batch…' : 'Ask RAG'}
+            </button>
           </div>
+
+          {/* Sequential Q&A results */}
+          {results.length > 0 && (
+            <div className="mt-6 space-y-3">
+              {results.map((r, idx) => (
+                <div key={idx} className="p-4 border rounded bg-gray-50 text-sm text-gray-800">
+                  <div className="font-semibold">{idx + 1}. Q: {r.question}</div>
+                  <div className="mt-1"><span className="font-semibold">Best Policy:</span> {r.best_policy || 'n/a'}</div>
+                  <div><span className="font-semibold">Confidence:</span> {r.confidence.toFixed(3)}</div>
+                  <div><span className="font-semibold">Engine:</span> {r.engine}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

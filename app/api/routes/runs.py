@@ -20,3 +20,12 @@ def run_rag(limit: int = Query(20, ge=1, le=500)) -> List[Dict[str, object]]:
     results = rag.run()
     return results[:limit]
 
+
+@router.get("/ask", summary="Query RAG with free-text question")
+def ask(q: str = Query(..., min_length=1, max_length=4000)) -> Dict[str, object]:
+    """
+    Runs the RAG pipeline for a single user-provided query and returns
+    the best matching policy and a confidence.
+    """
+    return rag.query(q)
+

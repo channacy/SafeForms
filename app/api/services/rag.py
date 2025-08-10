@@ -126,3 +126,32 @@ if __name__ == "__main__":
     out = run()
     for row in out[:10]:
         print(json.dumps(row, ensure_ascii=False))
+
+
+def query(q: str) -> Dict[str, object]:
+    """Single-query RAG entrypoint used by `/api/runs/ask`.
+    Returns a dict with best policy and confidence.
+    """
+    if _HAS_CHROMA:
+        client = chromadb.Client()  # type: ignore
+        collection = client.get_or_create_collection(name="policy_collection")
+        # Ensure policies are present (idempotent upserts)
+        for fname, text in _read_policies().items():
+            collection.upsert(documents=[text], ids=[fname])
+        name, score = _best_policy_chroma(q, collection)
+        return {
+            "question": q,
+            "best_policy": name,
+            "confidence": score,
+            "engine": "chroma",
+        }
+
+    # Fallback cosine path
+    policies = _read_policies()
+    name, score = _best_policy_cosine(q, policies)
+    return {
+        "question": q,
+        "best_policy": name,
+        "confidence": score,
+        "engine": "cosine",
+    }
