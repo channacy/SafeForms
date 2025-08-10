@@ -7,7 +7,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import ThemeRegistry from '../app/components/ThemeRegistry/ThemeRegistry';
+import ThemeRegistry from './components/ThemeRegistry/ThemeRegistry';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
