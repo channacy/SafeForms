@@ -1,0 +1,38 @@
+{
+  "to": "Vendor B",
+  "date": "2025-01-12",
+  "questions": [
+    "Do you process personal data from EU residents?",
+    "Describe your process for handling data subject requests.",
+    "Provide your latest compliance reports."
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you process personal data from EU residents?",
+      "answer": "Yes.",
+      "quality_estimate": 0.4,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    },
+    {
+      "q": "Describe your process for handling data subject requests.",
+      "answer": "Requests are handled ad hoc; no formal SLA.",
+      "quality_estimate": 0.25,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    },
+    {
+      "q": "Provide your latest compliance reports.",
+      "answer": "Not available.",
+      "quality_estimate": 0.1,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "to": "Vendor H",
+  "date": "2025-02-07",
+  "questions": [
+    "Do you require MFA for customer-facing dashboards?",
+    "Describe your logging and monitoring coverage.",
+    "Provide your latest external security assessment report."
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you require MFA for customer-facing dashboards?",
+      "answer": "Optional MFA; planning mandatory later.",
+      "quality_estimate": 0.5,
+      "evaluation": "borderline",
+      "flags": [
+        "control_gaps"
+      ]
+    },
+    {
+      "q": "Describe your logging and monitoring coverage.",
+      "answer": "Centralized logs with 30-day retention.",
+      "quality_estimate": 0.55,
+      "evaluation": "borderline",
+      "flags": []
+    },
+    {
+      "q": "Provide your latest external security assessment report.",
+      "answer": "We can share a summary letter.",
+      "quality_estimate": 0.5,
+      "evaluation": "borderline",
+      "flags": []
+    }
+  ]
+}

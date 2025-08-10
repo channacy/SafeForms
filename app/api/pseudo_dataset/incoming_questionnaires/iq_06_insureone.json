@@ -1,0 +1,75 @@
+{
+  "from": "InsureOne",
+  "date": "2025-02-22",
+  "questions": [
+    {
+      "q": "Do you use KMS for key management?",
+      "answer": "Yes, AWS KMS with 365-day rotation.",
+      "confidence": 0.87,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "IS-2025-v2.1",
+          "section": "3.2"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "572b0483349ee209cdafaf44b556f35fb3e83990522f270f3b6fd44dbd5b10e0",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "IS-2025-v2.1",
+            "section": "3.2"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Do you have continuous vendor monitoring?",
+      "answer": "Yes, for critical vendors.",
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "VRM-2025-v1.5",
+          "section": "2.2"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "fdc21de7daf0f1b86acc1678aabca43552a06cf4cf88cae94d5de50258a6bef3",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "VRM-2025-v1.5",
+            "section": "2.2"
+          }
+        ]
+      }
+    },
+    {
+      "q": "How do you prioritize vendor approvals?",
+      "answer": "Vendors with SOC2/ISO27001 prioritized.",
+      "confidence": 0.9,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "VRM-2025-v1.5",
+          "section": "1.5"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "71c20af4a9513445071df3db5ccca75a78afd66861b2b3b827132ccd9f920a29",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "VRM-2025-v1.5",
+            "section": "1.5"
+          }
+        ]
+      }
+    }
+  ]
+}

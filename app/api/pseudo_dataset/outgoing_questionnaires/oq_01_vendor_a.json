@@ -1,0 +1,45 @@
+{
+  "to": "Vendor A",
+  "date": "2025-02-05",
+  "questions": [
+    "Do you enforce MFA for all privileged accounts?",
+    "How do you manage offboarding access?",
+    "Describe your encryption methods for data at rest and in transit.",
+    "List all security certifications you currently hold."
+  ],
+  "vendor_responses": [
+    {
+      "q": "Do you enforce MFA for all privileged accounts?",
+      "answer": "Yes, MFA is enabled for all admins via Google Workspace.",
+      "quality_estimate": 0.85,
+      "evaluation": "pass",
+      "flags": []
+    },
+    {
+      "q": "How do you manage offboarding access?",
+      "answer": "Accounts are deactivated within 48 hours.",
+      "quality_estimate": 0.6,
+      "evaluation": "borderline",
+      "flags": []
+    },
+    {
+      "q": "Describe your encryption methods for data at rest and in transit.",
+      "answer": "AES-256 at rest; TLS 1.2 in transit.",
+      "quality_estimate": 0.75,
+      "evaluation": "pass",
+      "flags": [
+        "legacy_tls_present"
+      ]
+    },
+    {
+      "q": "List all security certifications you currently hold.",
+      "answer": "None.",
+      "quality_estimate": 0.2,
+      "evaluation": "fail",
+      "flags": [
+        "insufficient_evidence",
+        "no_certs"
+      ]
+    }
+  ]
+}

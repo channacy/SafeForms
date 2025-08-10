@@ -1,0 +1,75 @@
+{
+  "from": "FinServe Ltd.",
+  "date": "2025-03-02",
+  "questions": [
+    {
+      "q": "What is your RTO/RPO?",
+      "answer": "RTO 4 hours; RPO 15 minutes.",
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "BCDR-2025-v1.0",
+          "section": "1.1"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "0ef8f09183e1630c515df221ecc6fd1aee246a8ca3ff05e45437583ceaaafc22",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "BCDR-2025-v1.0",
+            "section": "1.1"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Do you test DR failover?",
+      "answer": "Yes, annually with postmortems.",
+      "confidence": 0.92,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "BCDR-2025-v1.0",
+          "section": "2.2"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "91bd45b692b14c3c5d65d935fbaa6a62778d1e5a5de86b27912a759a5400e582",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "BCDR-2025-v1.0",
+            "section": "2.2"
+          }
+        ]
+      }
+    },
+    {
+      "q": "Where are your primary and failover regions?",
+      "answer": "AWS us-east-1 primary, us-west-2 standby.",
+      "confidence": 0.93,
+      "evidence": [
+        {
+          "type": "policy",
+          "id": "BCDR-2025-v1.0",
+          "section": "1.4"
+        }
+      ],
+      "proof_bundle": {
+        "created_at": "2025-08-09T21:41:25Z",
+        "hash": "2afadecc726af509c9e8db6ac67a68f697801143239cd917e49849054606eeef",
+        "sources": [
+          {
+            "type": "policy",
+            "id": "BCDR-2025-v1.0",
+            "section": "1.4"
+          }
+        ]
+      }
+    }
+  ]
+}

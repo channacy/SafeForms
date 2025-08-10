@@ -1,14 +1,10 @@
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Navbar } from "./components/layout/Navbar";
-import { health } from "../lib/api";
+import { Navbar } from "../app/components/layout/Navbar";
 
-export default function Home() {
+export default function Upload() {
   const [text, setText] = useState('');
-  const [apiStatus, setApiStatus] = useState<string | null>(null);
-  const [checking, setChecking] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-resize textarea based on content
@@ -44,30 +40,6 @@ export default function Home() {
           {/* Character count indicator */}
           <div className="mt-2 text-right text-sm text-gray-500">
             {text.length} characters
-          </div>
-
-          {/* Backend health check */}
-          <div className="mt-6 flex items-center gap-3">
-            <button
-              onClick={async () => {
-                setChecking(true);
-                try {
-                  const res = await health();
-                  setApiStatus(`Backend: ${res.status}`);
-                } catch (e: any) {
-                  setApiStatus(`Backend error: ${e?.message ?? 'unknown'}`);
-                } finally {
-                  setChecking(false);
-                }
-              }}
-              className="px-4 py-2 rounded-md border border-gray-300 hover:border-gray-400 bg-white shadow-sm text-sm"
-              disabled={checking}
-            >
-              {checking ? 'Checking…' : 'Check Backend'}
-            </button>
-            {apiStatus && (
-              <span className="text-sm text-gray-700">{apiStatus}</span>
-            )}
           </div>
         </div>
       </div>
