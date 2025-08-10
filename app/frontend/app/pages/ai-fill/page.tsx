@@ -14,7 +14,7 @@ export default function Page() {
       <Navbar />
       <ProgressMobileStepper currentStep={activeStep} setCurrentStep={setActiveStep}/>
       {/* Main content area */}
-      {activeStep == 0 && <QuestionInput userInput='' currentStep={activeStep} setCurrentStep={setActiveStep}/>}
+      {activeStep == 0 && <QuestionInput userInput={userInput} currentStep={activeStep} setCurrentStep={setActiveStep}/>}
       {activeStep == 1 && <AutoFillResults />}
       {/* {activeStep = 2 && } */}
     </div>
