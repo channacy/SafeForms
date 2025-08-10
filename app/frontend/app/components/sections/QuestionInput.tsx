@@ -1,84 +1,62 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 interface Props {
-    userInput: string;
-    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-    setNextStep: React.Dispatch<React.SetStateAction<boolean>>;
-  }
-  
-export const QuestionInput = ({userInput, setCurrentStep, setNextStep}: Props) => {
-  const [text, setText] = useState('');
-  const [mode, setMode] = useState<'ai-fill' | 'questionnaire'>('ai-fill');
+  text: string;
+  setText: (value: string) => void;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  setNextStep: React.Dispatch<React.SetStateAction<boolean>>;
+  onSubmit: () => void;
+}
+
+export const QuestionInput = ({ text, setText, setCurrentStep, setNextStep, onSubmit }: Props) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-resize textarea based on content (expand downwards only)
   useEffect(() => {
     if (textareaRef.current) {
-      const textarea = textareaRef.current;
-      // Reset height to calculate new height
-      textarea.style.height = 'auto';
-      
-      // Calculate the required height
-      const scrollHeight = textarea.scrollHeight;
-      const minHeight = window.innerHeight * 0.4; // 40vh in pixels
-      const maxHeight = window.innerHeight * 0.7; // 70vh in pixels
-      
-      // Set height within bounds, ensuring it expands downwards
-      const newHeight = Math.max(minHeight, Math.min(scrollHeight, maxHeight));
-      textarea.style.height = `${newHeight}px`;
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, [text]);
 
-  const handleSubmit = () => {
+  const handleNext = () => {
     if (!text.trim()) return;
-    // go to the next step
-    setCurrentStep((prevActiveStep) => prevActiveStep + 1);
+    onSubmit();
+    setCurrentStep(prev => prev + 1);
   };
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Main content area */}
       <div className="flex-1 flex items-start justify-center px-4 pt-16 pb-8">
         <div className="w-full max-w-4xl">
           <textarea
             ref={textareaRef}
             value={text}
             onChange={(e) => {
-                const inputValue = e.target.value;
-                setText(inputValue);
-                if (inputValue.trim()) {
-                  setNextStep(true);
-                } else {
-                  setNextStep(false);
-                }
-              }}
-            placeholder={
-              mode === 'ai-fill'
-                ? "Paste your questionnaire here..."
-                : "Describe the vendor and your security requirements..."
-            }
+              const value = e.target.value;
+              setText(value);
+              setNextStep(!!value.trim());
+            }}
+            placeholder="Paste your questionnaire here..."
             className="w-full min-h-[40vh] max-h-[70vh] p-6 text-lg border-2 border-gray-300 rounded-lg 
                      focus:border-blue-500 focus:outline-none resize-none overflow-y-auto
                      bg-white shadow-lg transition-all duration-200 ease-in-out
                      hover:border-gray-400 focus:shadow-xl"
-            style={{
-              fontFamily: 'inherit',
-              lineHeight: '1.6',
-            }}
+            style={{ fontFamily: 'inherit', lineHeight: '1.6' }}
           />
-          
-          {/* Character count indicator and submit button */}
           <div className="mt-2 flex justify-between items-center">
-            <div className="flex flex-col items-end">
-              <div className="text-sm text-gray-500 mb-2">
-                {text.length} characters
-              </div>
-            </div>
+            <div className="text-sm text-gray-500">{text.length} characters</div>
+            <button
+              onClick={handleNext}
+              disabled={!text.trim()}
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 disabled:bg-gray-300"
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};

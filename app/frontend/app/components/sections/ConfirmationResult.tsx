@@ -1,10 +1,22 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+interface Props {
+  results: any[];
+  emails: { email1: string; email2: string };
+  setEmails: (e: { email1: string; email2: string }) => void;
+  apiStatus: string;
+  setApiStatus: (v: string) => void;
+  sendCompletion: (subject: string, preface: string) => Promise<void>;
+}
 
-export const ConfirmationResult = () => {
-    const router = useRouter();
+import { useState } from 'react';
+import DownloadIcon from '@mui/icons-material/Download';
+
+export const ConfirmationResult = ({ results, emails, setEmails, apiStatus, sendCompletion }: Props) => {
+    const handleSend = async () => {
+        await sendCompletion('Job Completed', 'Accepted AI suggestions are included below.');
+      };
+
     const [email, setEmail] = useState('');
     const [changes, setChanges] = useState(`Question: What is the software?
         Previous Response: A code editor with installed
@@ -17,19 +29,6 @@ export const ConfirmationResult = () => {
         Question: What security measures are in place?
         Previous Response: Basic password protection
         Updated Response: Multi-factor authentication, role-based access control, encrypted data storage, and regular penetration testing`);
-
-    const handleSubmit = () => {
-        if (!email.trim()) {
-            alert('Please enter an email address');
-            return;
-        }
-        
-        // Here you would typically send the data to your API
-        console.log('Submitting:', { changes, email });
-        
-        // Navigate back to homepage
-        router.push('/');
-    };
 
     return (
         <div className="min-h-screen flex flex-col">            
@@ -59,49 +58,34 @@ export const ConfirmationResult = () => {
                             }}
                         />
                     </div>
-                    
-                    {/* Email input field */}
-                    <div className="mb-8">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                            Email Address
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email address"
-                            className="w-full p-3 text-sm border-2 border-gray-300 rounded-lg 
-                                     focus:border-blue-500 focus:outline-none
-                                     bg-white shadow-sm transition-all duration-200 ease-in-out
-                                     hover:border-gray-400 focus:shadow-md"
-                            required
-                        />
-                    </div>
-                    
-                    {/* Submit button */}
-                    <div className="flex justify-center gap-4">
-                        <button
-                            onClick={handleSubmit}
-                            className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 
-                                     font-medium shadow-lg hover:shadow-xl transition-all duration-200 
-                                     disabled:bg-gray-300 disabled:cursor-not-allowed"
-                            disabled={!email.trim()}
-                        >
-                            Download
-                        </button>
-                        <button
-                            onClick={handleSubmit}
-                            className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 
-                                     font-medium shadow-lg hover:shadow-xl transition-all duration-200 
-                                     disabled:bg-gray-300 disabled:cursor-not-allowed"
-                            disabled={!email.trim()}
-                        >
-                            Send Email
-                        </button>
-                    </div>
-                </div>
-            </div>
+
+                    <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Recipient 1</label>
+            <input
+              type="email"
+              value={emails.email1}
+              onChange={(e) => setEmails({ ...emails, email1: e.target.value })}
+              className="w-full p-3 border rounded-lg"
+            />
+          </div>
+
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={handleSend}
+              className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600"
+            >
+            Send Email
+            </button>
+            <button
+              onClick={handleSend}
+              className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600"
+            >
+                <DownloadIcon />
+            </button>
+          </div>
+          {apiStatus && <div className="mt-4 text-center text-sm text-gray-700">{apiStatus}</div>}
+        </div>
+        </div>
         </div>
     );
 }
