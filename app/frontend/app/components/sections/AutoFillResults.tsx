@@ -1,9 +1,12 @@
 "use client"
-import { Navbar } from "../../../components/layout/Navbar"
-import { QuestionResponse } from "../../../components/layout/QuestionResponse"
-import { ProgressMobileStepper } from "../../../components/layout/ProgressBar"
+import { QuestionResponse } from "../../components/layout/QuestionResponse"
 
-export default function Page() {
+// TODO: 
+export default interface ResultsType {
+    data: {question: [], response: []};
+}
+
+export const AutoFillResults = () => {
     return (
         <div className="min-h-screen flex flex-col">
             <div className="flex-1 flex items-start justify-center px-4 pt-8 pb-8">
@@ -12,12 +15,10 @@ export default function Page() {
                     <p className="text-gray-600 text-center mb-8">
                         Review the responses below that have low confidence scores and make any necessary adjustments.
                     </p>
-                    
                     <div className="space-y-6">
                         <QuestionResponse question="What is the software?" response="A code editor with installed" confidenceScore={10}/>
                         <QuestionResponse question="How is data protected?" response="No" confidenceScore={10}/>
                     </div>
-                    
                     <div className="flex justify-center mt-8">
                         <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">
                             Continue
