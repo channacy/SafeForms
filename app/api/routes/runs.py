@@ -28,8 +28,9 @@ def build_plane_a_index(reset: bool = False) -> Dict[str, object]:
     Build or rebuild the Plane-A index from policies
     """
     try:
-        coll = build_index(reset=reset)
-        count = coll.count() if coll else 0
+        idx = build_index(reset=reset)
+        # build_index returns a dict with keys: index, embeddings, metadata
+        count = len(idx.get("metadata", [])) if isinstance(idx, dict) else 0
         return {"status": "ready", "indexed_chunks": count}
     except Exception as e:
         return {"status": "error", "error": str(e)}

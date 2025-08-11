@@ -2,7 +2,6 @@ import os
 import pickle
 import re
 from typing import Dict, List, Tuple
-import numpy as np
 from sklearn.neighbors import NearestNeighbors
 from sentence_transformers import SentenceTransformer
 
